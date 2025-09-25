@@ -2,28 +2,41 @@ import React from 'react';
 
 const AboutUs = () => {
     return (
-        <section id="about" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 md:mb-12 drop-shadow-lg
-                                    bg-gradient-to-r from-purple-400 via-pink-500 to-red-500  bg-clip-text
-                                    animate-pulse-subtle">
+        <section 
+            id="about" 
+            className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-transparent"
+        >
+            <div className="max-w-5xl mx-auto text-center">
+                {/* Heading */}
+                <h2 
+                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 md:mb-12 
+                               bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
+                               bg-clip-text text-transparent drop-shadow-lg animate-pulse-subtle"
+                >
                     About Us
                 </h2>
 
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed mb-6 max-w-3xl mx-auto font-light">
-                    Endorphind is a pioneering wellness company at the intersection of art, artificial intelligence, and technology. We co-create with artists, blending human creativity with cutting-edge AI to craft soulful, intelligent products that elevate everyday well-being. Our expertise extends to comprehensive web development—including both frontend and backend—enabling us to build seamless, interactive digital experiences.
-                    
+                {/* First Paragraph */}
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6 max-w-4xl mx-auto font-light">
+                    At <span className="font-semibold text-white">Endorphind</span>, we are a pioneering creative and wellness company at the intersection of <span className="text-purple-300">art, storytelling, artificial intelligence,</span> and <span className="text-pink-300">technology</span>. 
+                    Our dynamic team of video producers, editors, cinematographers, scriptwriters, motion graphics artists, 
+                    and full-stack developers builds <span className="text-red-300">AI applications</span> and intelligent digital experiences.
                 </p>
 
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto font-light">
-                Rooted in beauty, empathy, and innovation, our team combines over four years of hands-on development experience with fresh perspectives from designers and psychology students. Together, we’re shaping a future where technology not only advances but deeply enriches the human experience.
-
+                {/* Second Paragraph */}
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6 max-w-4xl mx-auto font-light">
+                    From <span className="text-purple-200">promotional films, brand stories, event coverage, and social media videos</span> 
+                    to <span className="text-pink-200">long-form storytelling and end-to-end web and full-stack AI application development</span>, 
+                    we handle the complete journey—from concept to deployment—with precision and creativity.
                 </p>
 
-
+                {/* Third Paragraph */}
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6 max-w-4xl mx-auto font-light">
+                    By blending <span className="text-white font-medium">human artistry</span> with <span className="text-red-300">cutting-edge AI</span>, 
+                    we co-create soulful, seamless, and engaging experiences designed to elevate everyday well-being 
+                    while capturing your message with clarity and impact.
+                </p>
             </div>
-
-
         </section>
     );
 };
