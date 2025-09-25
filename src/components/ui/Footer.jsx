@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Facebook, Twitter, Instagram, Linkedin, Rocket, Check } from 'lucide-react';
+import { Button } from "@/components/ui/button"; // update path as needed
 
 const App = () => {
     const [email, setEmail] = useState('');
@@ -92,49 +93,11 @@ const App = () => {
                                     />
                                     {phoneError && <p className="text-red-400 text-xs text-left -mt-2">{phoneError}</p>}
 
-                                    <button
-                                        type="button"
-                                        onClick={handleButtonClick}
-                                        disabled={!isFormValid || isSubmitted}
-                                        className={`
-                                            relative inline-flex h-12 w-full items-center justify-start border-2 border-blue-600 px-4 transition-all duration-500 rounded-md overflow-hidden
-                                            ${isSubmitted ? 'bg-blue-600' : 'bg-gray-900'}
-                                            ${!isFormValid || isSubmitted ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'}
-                                        `}
-                                    >
-                                        <span
-                                            className={`absolute top-1/2 -translate-y-1/2 p-2 transition-all duration-500 rounded-md
-                                                ${isSubmitted
-                                                    ? 'left-[calc(100%-2.5rem)] bg-white text-blue-600'
-                                                    : 'left-2 bg-white text-blue-600'
-                                                }
-                                            `}
-                                        >
-                                            {isSubmitted ? <Check size={20} /> : <Rocket size={20} />}
-                                        </span>
-
-                                        <span
-                                            className={`absolute left-1/2 -translate-x-1/2 font-semibold transition-all duration-500 ease-in-out text-white
-                                                ${isSubmitted
-                                                    ? 'opacity-0 translate-x-12'
-                                                    : 'opacity-100'
-                                                }
-                                            `}
-                                        >
-                                            Submit
-                                        </span>
-
-                                        <span
-                                            className={`absolute left-1/2 -translate-x-1/2 font-semibold transition-all duration-500 ease-in-out text-white
-                                                ${isSubmitted
-                                                    ? 'opacity-100 translate-x-0'
-                                                    : 'opacity-0 -translate-x-12'
-                                                }
-                                            `}
-                                        >
-                                            Done!
-                                        </span>
-                                    </button>
+                                    <div className="flex items-center justify-center bg-gray-900">
+                                        <Button>
+                                            Default Button
+                                        </Button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -164,9 +127,9 @@ const App = () => {
                     </div>
 
                     {/* Copyright text for larger screens, hidden on small screens */}
-                    
+
                     <p className="text-gray-500 text-sm text-center mt-1 ">
-                    Endorphind Solutions Pvt Ltd.
+                        Endorphind Solutions Pvt Ltd.
                     </p>
                     <p className="text-gray-500 text-sm text-center mt-1 ">
                         B190, Sector 31, Noida -301301
