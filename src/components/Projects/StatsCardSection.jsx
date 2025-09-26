@@ -37,7 +37,7 @@ const StatsCardSection = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           
           <div className="relative z-10">
-            <div className="flex items-center -space-x-3 mb-3">
+            <div className="flex items-center -space-x-3 mb-3 ml-10 lg:ml-0">
               <div className="relative group/avatar">
                 <img
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
