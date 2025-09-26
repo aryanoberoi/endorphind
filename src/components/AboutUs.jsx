@@ -1,5 +1,4 @@
 import React from 'react';
-import Particles from "@/components/ui/Particles";
 
 const AboutUs = () => {
   return (
@@ -7,19 +6,6 @@ const AboutUs = () => {
       id="about" 
       className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8"
     >
-      {/* Particle Background */}
-      <div className="absolute inset-0 -z-10">
-        <Particles
-          particleColors={['#ffffff', '#ffffff']}
-          particleCount={600}
-          particleSpread={10}
-          speed={0.1}
-          particleBaseSize={100}
-          moveParticlesOnHover={true}
-          alphaParticles={false}
-          disableRotation={false}
-        />
-      </div>
 
       {/* Content */}
       <div className="max-w-5xl mx-auto text-center relative z-10">

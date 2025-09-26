@@ -10,9 +10,9 @@ export default function Project() {
     >
       <div className="w-screen">
         <Navbar />
-        <div className="min-h-screen">
-      <Services />
-    </div>
+        <div className="min-h-[82vh] flex flex-col justify-center" >
+          <Services/>
+        </div>
         <Footer />
       </div>
 
