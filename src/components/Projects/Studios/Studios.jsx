@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // for navigation
-import GlideCarousel from "./GlideCarousel";
-import GlassCardCarousel from "./GlassCardCarousel";
-import StatsCardSection from "./StatsCardSection";
+import GlideCarousel from "../GlideCarousel";
+import StatsCardSection from "../StatsCardSection";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -20,21 +19,7 @@ const Projects = () => {
           studies and see what we can build for you.
         </p>
 
-        {/* Buttons */}
-        <div className="flex justify-center gap-6 pt-4">
-          <button
-            onClick={() => navigate("/webprojects")}
-            className="px-6 py-3 bg-indigo-600 text-white rounded-2xl font-semibold shadow-md hover:bg-indigo-700 transition duration-300"
-          >
-            Web Projects
-          </button>
-          <button
-            onClick={() => navigate("/studios")}
-            className="px-6 py-3 bg-transparent border border-gray-400 text-gray-200 rounded-2xl font-semibold shadow-md hover:bg-gray-700 hover:border-gray-600 transition duration-300"
-          >
-            Endorphind Studios
-          </button>
-        </div>
+        
       </div>
 
       {/* Carousels & Stats */}
@@ -42,9 +27,7 @@ const Projects = () => {
         <GlideCarousel />
       </div>
 
-      <div>
-        <GlassCardCarousel />
-      </div>
+      
 
       <div>
         <StatsCardSection />

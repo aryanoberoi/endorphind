@@ -3,6 +3,8 @@ import Home from './pages/Home'
 import CustomCursor from './components/ui/SplashCursor'
 import Project from './pages/Project'
 import Service from './pages/Service'
+import WebProjects from "./pages/WebProjects"
+import Studios from "./pages/Studios"
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Project/>}/>
           <Route path="/services" element={<Service/>}/>
+          <Route path="/studios" element={<Studios/>}/>
+          <Route path="/webprojects" element={<WebProjects/>}/>
         </Routes>
       </div>
     </div>

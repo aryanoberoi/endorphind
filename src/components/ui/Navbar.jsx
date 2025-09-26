@@ -71,15 +71,32 @@ const MobileMenuOverlay = ({ isOpen, onClose, activeTab, setActiveTab }) => {
               : "text-gray-300 hover:text-white"
           }`;
           return (
-            <a
-              key={tabName}
-              href={tabName === "projects" || tabName === "services" ? `/${tabName}` : `#${tabName}`}
-              onClick={(e) => handleLinkClick(e, tabName)}
-              className={linkClasses}
-            >
-              {IconComponent && <IconComponent className="w-8 h-8" />}
-              <span>{tabName.charAt(0).toUpperCase() + tabName.slice(1)}</span>
-            </a>
+            <div key={tabName} className="relative group">
+              <a
+                href={tabName === "projects" || tabName === "services" ? `/${tabName}` : `#${tabName}`}
+                onClick={(e) => handleLinkClick(e, tabName)}
+                className={linkClasses}
+              >
+                {IconComponent && <IconComponent className="w-8 h-8" />}
+                <span>{tabName.charAt(0).toUpperCase() + tabName.slice(1)}</span>
+              </a>
+              {tabName === "projects" && (
+                <div className="absolute left-0 mt-2 w-48 bg-black bg-opacity-70 backdrop-filter backdrop-blur-md rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <a
+                    href="/studios"
+                    className="block px-4 py-2 text-white font-sans-serif bg-blur"
+                  >
+                    Endorphind Studios
+                  </a>
+                  <a
+                    href="/webprojects"
+                    className="block px-4 py-2 text-white font-sans-serif bg-blur"
+                  >
+                    Web Projects
+                  </a>
+                </div>
+              )}
+            </div>
           );
         })}
       </nav>
@@ -148,21 +165,38 @@ const TopNavigationBar = ({ toggleMenu, activeTab, setActiveTab }) => {
         {["home", "about", "services", "projects"].map((tabName) => {
           const Icon = getTabIconComponent(tabName);
           return (
-            <a
-              key={tabName}
-              href={tabName === "projects" || tabName === "services" ? `/${tabName}` : `#${tabName}`}
-              onClick={(e) => handleTabClick(e, tabName)}
-              className={`focus:outline-none flex items-center group ${getLinkClass(
-                tabName
-              )}`}
-            >
-              {React.createElement(Icon, {
-                className: "mr-2 w-5 h-5 group-hover:text-cyan-300",
-              })}
-              <span className="text-base sm:text-lg font-normal font-mono">
-                {tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-              </span>
-            </a>
+            <div key={tabName} className="relative group">
+              <a
+                href={tabName === "projects" || tabName === "services" ? `/${tabName}` : `#${tabName}`}
+                onClick={(e) => handleTabClick(e, tabName)}
+                className={`focus:outline-none flex items-center group ${getLinkClass(
+                  tabName
+                )}`}
+              >
+                {React.createElement(Icon, {
+                  className: "mr-2 w-5 h-5 group-hover:text-cyan-300",
+                })}
+                <span className="text-base sm:text-lg font-normal font-mono">
+                  {tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                </span>
+              </a>
+              {tabName === "projects" && (
+                <div className="absolute left-0 mt-2 w-48 bg-black bg-opacity-70 backdrop-filter backdrop-blur-md rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <a
+                    href="/studios"
+                    className="block px-4 py-2 text-white font-sans-serif bg-blur"
+                  >
+                    Endorphind Studios
+                  </a>
+                  <a
+                    href="/webprojects"
+                    className="block px-4 py-2 text-white font-sans-serif bg-blur"
+                  >
+                    Web Projects
+                  </a>
+                </div>
+              )}
+            </div>
           );
         })}
       </div>
