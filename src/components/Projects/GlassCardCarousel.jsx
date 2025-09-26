@@ -4,7 +4,7 @@ import CardSwap, { Card } from "./CardSwap";
 const GlassCardCarousel = () => {
   return (
     <div className="w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-16 lg:py-24">
-      <div className="w-full max-w-6xl transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+      <div className="w-full max-w-6xl transform -rotate-1 hover:rotate-0 transition-transform duration-500 lg:ml-100">
         <CardSwap
           cardDistance={30}
           verticalDistance={40}
@@ -13,8 +13,8 @@ const GlassCardCarousel = () => {
         >
           {/* Card 1 */}
           <Card className="
-            w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[700px] lg:max-w-[800px]
-            aspect-[16/9] sm:aspect-[16/9] md:aspect-[16/9]
+            w-[90vw] sm:w-[70vw] md:w-[60vw] lg:w-[50vw]
+            aspect-[16/9]
             bg-gradient-to-br from-white/15 to-white/5
             backdrop-blur-2xl
             rounded-3xl
@@ -42,8 +42,8 @@ const GlassCardCarousel = () => {
 
           {/* Card 2 */}
           <Card className="
-            w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[700px] lg:max-w-[800px]
-            aspect-[16/9] sm:aspect-[16/9] md:aspect-[16/9]
+            w-[90vw] sm:w-[70vw] md:w-[60vw] lg:w-[50vw]
+            aspect-[16/9]
             bg-gradient-to-br from-white/15 to-white/5
             backdrop-blur-2xl
             rounded-3xl
@@ -71,8 +71,8 @@ const GlassCardCarousel = () => {
 
           {/* Card 3 */}
           <Card className="
-            w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[700px] lg:max-w-[800px]
-            aspect-[16/9] sm:aspect-[16/9] md:aspect-[16/9]
+            w-[90vw] sm:w-[70vw] md:w-[60vw] lg:w-[50vw]
+            aspect-[16/9]
             bg-gradient-to-br from-white/15 to-white/5
             backdrop-blur-2xl
             rounded-3xl
