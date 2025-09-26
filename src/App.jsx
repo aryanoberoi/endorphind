@@ -5,6 +5,7 @@ import Project from './pages/Project'
 import Service from './pages/Service'
 import WebProjects from "./pages/WebProjects"
 import Studios from "./pages/Studios"
+import Teams from "./pages/Team"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/services" element={<Service/>}/>
           <Route path="/studios" element={<Studios/>}/>
           <Route path="/webprojects" element={<WebProjects/>}/>
+          <Route path="/teams" element={<Teams/>}/>
         </Routes>
       </div>
     </div>
