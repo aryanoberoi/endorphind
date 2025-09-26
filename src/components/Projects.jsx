@@ -2,7 +2,7 @@ import React from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { IoMdHappy } from "react-icons/io";
 import GlideCarousel from "../components/ui/GlideCarousel";
-import CardSwap, { Card } from "../components/ui/CardSwap"
+import GlassCardCarousel from "../components/ui/GlassCardCarousel"
 
 const Projects = () => {
   return (
@@ -23,6 +23,11 @@ const Projects = () => {
       <div className="flex">
         <GlideCarousel />
       </div>
+
+      <div>
+      <GlassCardCarousel />
+    </div>
+
 
       {/* Stats Card Section */}
       <div className="w-full max-w-6xl rounded-3xl shadow-2xl bg-[#1d1d1d] p-9 sm:p-16">
@@ -72,92 +77,6 @@ const Projects = () => {
 
 
 
-      <div
-        style={{
-          height: '600px',
-          position: 'relative',
-          left: '2em',
-          bottom: '10em',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <CardSwap
-          cardDistance={60}
-          verticalDistance={70}
-          delay={5000}
-          pauseOnHover={false}
-        >
-          <Card
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)', // glass effect
-              backdropFilter: 'blur(15px)',          // frosted glass
-              borderRadius: '20px',
-              padding: '2rem',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-              color: '#fff',
-              minWidth: '250px',
-              maxWidth: '300px',
-              textAlign: 'center',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            }}
-            className="hover:scale-105 hover:shadow-2xl"
-          >
-            <h3 className="text-2xl font-bold mb-2" style={{ color: '#FFD700' }}>
-              Card 1
-            </h3>
-            <p className="text-gray-200 font-light">Your content here</p>
-          </Card>
-
-          <Card
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(15px)',
-              borderRadius: '20px',
-              padding: '2rem',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-              color: '#fff',
-              minWidth: '250px',
-              maxWidth: '300px',
-              textAlign: 'center',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            }}
-            className="hover:scale-105 hover:shadow-2xl"
-          >
-            <h3 className="text-2xl font-bold mb-2" style={{ color: '#FF69B4' }}>
-              Card 2
-            </h3>
-            <p className="text-gray-200 font-light">Your content here</p>
-          </Card>
-
-          <Card
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(15px)',
-              borderRadius: '20px',
-              padding: '2rem',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-              color: '#fff',
-              minWidth: '250px',
-              maxWidth: '300px',
-              textAlign: 'center',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            }}
-            className="hover:scale-105 hover:shadow-2xl"
-          >
-            <h3 className="text-2xl font-bold mb-2" style={{ color: '#00FFFF' }}>
-              Card 3
-            </h3>
-            <img 
-              src="https://source.unsplash.com/random/300x200" 
-              alt="Random" 
-              className="w-full h-auto mb-2 rounded-md"
-            />
-            <p className="text-gray-200 font-light">Your content here</p>
-          </Card>
-        </CardSwap>
-      </div>
 
     </div>
   );
