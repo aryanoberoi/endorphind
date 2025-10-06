@@ -6,7 +6,6 @@ export default function Project() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundImage: "url('bg.jpg')", backgroundSize: "cover" }}
     >
       <div className="w-screen">
         <Navbar />

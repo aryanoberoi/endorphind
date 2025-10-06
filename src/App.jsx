@@ -6,22 +6,25 @@ import Service from './pages/Service'
 import WebProjects from "./pages/WebProjects"
 import Studios from "./pages/Studios"
 import Teams from "./pages/Team"
+import BackgroundLayout from './components/ui/BackgroundLayout'
 
 function App() {
   return (
 
     <div className="min-h-screen flex flex-col">
-    {/* <CustomCursor SPLAT_RADIUS={0.1} /> */}
+      {/* <CustomCursor SPLAT_RADIUS={0.1} /> */}
 
       <div className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Project/>}/>
-          <Route path="/services" element={<Service/>}/>
-          <Route path="/studios" element={<Studios/>}/>
-          <Route path="/webprojects" element={<WebProjects/>}/>
-          <Route path="/teams" element={<Teams/>}/>
-        </Routes>
+        <BackgroundLayout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Project />} />
+            <Route path="/services" element={<Service />} />
+            <Route path="/studios" element={<Studios />} />
+            <Route path="/webprojects" element={<WebProjects />} />
+            <Route path="/teams" element={<Teams />} />
+          </Routes>
+        </BackgroundLayout>
       </div>
     </div>
   )

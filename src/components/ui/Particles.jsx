@@ -129,7 +129,7 @@ const Particles = ({
     };
 
     if (moveParticlesOnHover) {
-      container.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mousemove', handleMouseMove);
     }
 
     const count = particleCount;
@@ -230,7 +230,8 @@ const Particles = ({
     disableRotation
   ]);
 
-  return <div ref={containerRef} className={`relative w-full h-full ${className}`} />;
+  return <div ref={containerRef} className={`absolute inset-0 w-full h-full ${className || ""}`} />;
+
 };
 
 export default Particles;

@@ -7,11 +7,10 @@ export default function Project() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundImage: "url('/bg.jpg')", backgroundSize: "cover" }} // Corrected path
     >
       <div className="w-screen">
         <Navbar />
-        <div className="min-h-[82vh] flex flex-col justify-center" >
+        <div className="bg-transparent text-gray-200 flex flex-col items-center py-16 px-6 space-y-20">
           <Projects />
         </div>
         <Footer />

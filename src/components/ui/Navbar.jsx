@@ -8,7 +8,7 @@ import {
   Cross1Icon,
   PersonIcon,
 } from "@radix-ui/react-icons";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const MobileMenuOverlay = ({ isOpen, onClose, activeTab, setActiveTab }) => {
   const navigate = useNavigate();
@@ -214,25 +214,26 @@ const TopNavigationBar = ({ toggleMenu, activeTab, setActiveTab }) => {
 
               {/* Projects Dropdown */}
               {isProjects && (
-                <div className="absolute left-0 mt-2 w-56 bg-gray-900/95 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top">
-                  <div className="p-2">
-                    <a
-                      href="/studios"
-                      className="flex items-center space-x-3 px-3 py-3 rounded-md text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 group"
-                    >
-                      <div className="w-2 h-2 bg-cyan-400 rounded-full group-hover:scale-125 transition-transform duration-200" />
-                      <span className="text-sm font-medium">Endorphind Studios</span>
-                    </a>
-                    <a
-                      href="/webprojects"
-                      className="flex items-center space-x-3 px-3 py-3 rounded-md text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 group"
-                    >
-                      <div className="w-2 h-2 bg-blue-400 rounded-full group-hover:scale-125 transition-transform duration-200" />
-                      <span className="text-sm font-medium">Web Projects</span>
-                    </a>
-                  </div>
-                </div>
-              )}
+  <div className="absolute left-0 mt-2 w-56 bg-gray-900/95 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top">
+    <div className="p-2">
+      <Link
+        to="/studios"
+        className="flex items-center space-x-3 px-3 py-3 rounded-md text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 group"
+      >
+        <div className="w-2 h-2 bg-cyan-400 rounded-full group-hover:scale-125 transition-transform duration-200" />
+        <span className="text-sm font-medium">Endorphind Studios</span>
+      </Link>
+
+      <Link
+        to="/webprojects"
+        className="flex items-center space-x-3 px-3 py-3 rounded-md text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 group"
+      >
+        <div className="w-2 h-2 bg-blue-400 rounded-full group-hover:scale-125 transition-transform duration-200" />
+        <span className="text-sm font-medium">Web Projects</span>
+      </Link>
+    </div>
+  </div>
+)}
             </div>
           );
         })}
