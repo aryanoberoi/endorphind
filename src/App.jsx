@@ -11,7 +11,7 @@ function App() {
   return (
 
     <div className="min-h-screen flex flex-col">
-    <CustomCursor SPLAT_RADIUS={0.1} />
+    {/* <CustomCursor SPLAT_RADIUS={0.1} /> */}
 
       <div className="flex-1">
         <Routes>
