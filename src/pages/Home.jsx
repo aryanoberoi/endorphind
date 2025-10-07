@@ -26,24 +26,19 @@ export default function Home() {
               particleCount={600}
               particleSpread={10}
               speed={0.1}
-              particleBaseSize={100}
-              moveParticlesOnHover={true}
+              particleBaseSize={50}
+              moveParticlesOnHover={false}
               alphaParticles={false}
               disableRotation={false}
             />
+                      <AboutUs />
           </div>
-          
+         
 
 
         </main>
-        <div className="min-h-[82vh] flex flex-col justify-center" >
-          <AboutUs />
-        </div>
-        {/* <div className="min-h-[82vh] flex flex-col justify-center" >
-          <Teams/>
-        </div> */}
 
-        <Footer />
+      <Footer />
       </div>
 
     </div>

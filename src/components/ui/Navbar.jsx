@@ -18,7 +18,7 @@ const MobileMenuOverlay = ({ isOpen, onClose, activeTab, setActiveTab }) => {
     setActiveTab(tabName);
     onClose();
 
-    if (tabName === "projects" || tabName === "services" || tabName === "teams") {
+    if (tabName === "projects" || tabName === "services" || tabName === "team") {
       navigate(`/${tabName}`);
     } else {
       if (window.location.pathname !== "/") {
