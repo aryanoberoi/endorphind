@@ -7,10 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        brand: ['"Inter"', 'sans-serif'],
-        display: ['"Playfair Display"', 'serif'],
-        mono: ['"Fira Code"', 'monospace'],
-        jet: ['"JetBrains Mono"', 'monospace'],
+        primary: ['Poppins', 'sans-serif'],
+        secondary: ['Inter', 'sans-serif'],
+        heading: ['Playfair Display', 'serif'],
       },
       keyframes: {
         float: {

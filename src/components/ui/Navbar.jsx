@@ -32,6 +32,7 @@ const NAV_TABS = [
     ],
   },
   { name: "teams", label: "Teams", Icon: PersonIcon, type: "route" },
+  { name: "findaura", label: "Findaura", Icon: PersonIcon, type: "route" },
 ];
 
 // =========================================================================
@@ -307,9 +308,9 @@ const TopNavigationBar = ({ toggleMenu, activeTab, setActiveTab }) => {
 
   return (
     <nav
-      className="fixed top-6 left-4 right-4 md:left-[2em] md:right-[2em] py-3 px-6 flex justify-between items-center
+      className="fixed top-6 left-4 right-4 md:left-[12em] md:right-[12em] py-3 px-10 flex justify-between items-center
                      bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl
-                     rounded-3xl z-40 transition-all duration-300 ease-out hover:border-white/30"
+                     rounded-4xl z-40 transition-all duration-300 ease-out hover:border-white/30"
     >
       {/* Logo */}
       <div className="flex items-center">
