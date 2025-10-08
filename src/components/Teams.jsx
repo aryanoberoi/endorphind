@@ -6,22 +6,26 @@ const Teams = () => {
     {
       name: 'Aryan Oberoi',
       role: 'Founder',
-      bio: 'Visionary leader with 15+ years in tech innovation and strategic growth.'
+      bio: "I am a passionate technologist with a deep love for philosophy, spirituality, and psychology. I believe that the intersection of these fields holds the key to creating innovative solutions that can truly transform our world. My journey in AI has been driven by relentless curiosity and a desire to leverage advancements for the greater good. I am particularly fascinated by how AI can be used to enhance emotional understanding and human connections. My interests extend to data science, machine learning (ML), large language models (LLMs), and research—fields that captivate me with their endless possibilities for innovation and solving complex problems. In addition to my passion for technology, I have a keen interest in filmmaking, content creation, and acting. I see storytelling as a powerful tool to inspire, educate, and bring about change. I also use AI to create beautiful visuals in films, as I believe content is the way to touch people’s hearts and spark inspiration. Understanding the human mind and behavior not only fascinates me but also informs my approach to technology and storytelling. Whether it’s through developing cutting-edge technology, crafting engaging content, my goal is to contribute to a better, more empathetic world.",
+      photo: 'team/aryano.png'
     },
     {
       name: 'Aryan Das',
       role: 'Co Founder and Creative Director',
-      bio: 'Former Google engineer specializing in scalable architecture solutions.'
+      bio: 'Former Google engineer specializing in scalable architecture solutions.',
+      photo: 'team/aryand.png'
     },
     {
       name: 'Anahita Zahl Tantra',
       role: 'Co Founder',
-      bio: 'Award-winning designer with expertise in brand storytelling.'
+      bio: 'Award-winning designer with expertise in brand storytelling.',
+      photo: 'team/anahita.png'
     },
     {
       name: 'Arham',
       role: 'Technical Lead',
-      bio: 'Md. Anas Jamal is an AI Engineer with expertise in large language models, generative AI, and machine learning. He has developed enterprise-grade AI solutions, led research projects, and optimized ML applications for the public and private sectors. With experience at Carnot Research, Persist Ventures, and Tata Steel, he has demonstrated proficiency in AI-driven applications, including multilingual meeting intelligence tools, advanced web scraping, and machine learning pipelines'
+      bio: 'Md. Anas Jamal is an AI Engineer with expertise in large language models, generative AI, and machine learning. He has developed enterprise-grade AI solutions, led research projects, and optimized ML applications for the public and private sectors. With experience at Carnot Research, Persist Ventures, and Tata Steel, he has demonstrated proficiency in AI-driven applications, including multilingual meeting intelligence tools, advanced web scraping, and machine learning pipelines',
+      photo: 'team/arham.png'
     }
   ];
 
@@ -48,13 +52,11 @@ const Teams = () => {
           {teamMembers.map((member, index) => (
             <div key={index} className="flex flex-col md:flex-row items-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 mb-6 transition-all duration-500 hover:bg-white/10 hover:border-white/20">
               {/* Member Photo */}
-              <div className="w-24 h-24 mb-4 md:mb-0 md:mr-6 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center border-2 border-gray-600 transition-colors duration-300">
-                <span className="text-2xl font-bold text-gray-300">
-                  {member.name.split(' ').map(n => n[0]).join('')}
-                </span>
+              <div className="flex-shrink-0 w-80 h-80 mb-4 md:mb-0 md:mr-6 overflow-hidden border-2 border-gray-600 transition-colors duration-300">
+                <img src={member.photo} alt={`${member.name}'s photo`} className="w-full h-full object-cover" />
               </div>
               {/* Member Info */}
-              <div className="text-center md:text-left">
+              <div className="flex-grow text-center md:text-left">
                 <h3 className="text-lg font-semibold text-white mb-2">{member.name}</h3>
                 <p className="text-cyan-400 font-medium text-sm mb-3">{member.role}</p>
                 <p className="text-gray-400 text-sm">{member.bio}</p>
