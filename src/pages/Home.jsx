@@ -17,7 +17,7 @@ export default function Home() {
         <Navbar />
         <main className="min-h-[82vh] flex flex-col justify-center">
           <div style={{ width: '100%', height: '600px', position: 'relative', backgroundColor: '#070A0D' }}>
-            <Particles
+            {/* <Particles
               particleColors={['#E33D22','#C57E1B', '#ED9907']}
               particleCount={7500}
               particleSpread={10}
@@ -26,7 +26,7 @@ export default function Home() {
               moveParticlesOnHover={false}
               alphaParticles={false}
               disableRotation={true}
-            />
+            /> */}
                       <AboutUs />
           </div>
          

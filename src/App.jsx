@@ -11,11 +11,6 @@ import Findaura from './pages/Findaura'
 
 function App() {
   return (
-
-    <div className="min-h-screen flex flex-col">
-      {/* <CustomCursor SPLAT_RADIUS={0.1} /> */}
-
-      <div className="flex-1">
         <BackgroundLayout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -27,8 +22,6 @@ function App() {
             <Route path="/findaura" element={<Findaura />} />
           </Routes>
         </BackgroundLayout>
-      </div>
-    </div>
   )
 }
 
