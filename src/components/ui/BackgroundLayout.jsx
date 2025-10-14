@@ -4,7 +4,7 @@ import Particles from "./Particles";
 
 const BackgroundLayout = ({ children }) => {
   return (
-    <div className="relative w-full min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative w-full min-h-screen bg-[#110c1d] text-white overflow-hidden">
       {/* Particle Background (below content but above base bg) */}
       <div className="absolute inset-0 z-0 opacity-70">
       <Particles

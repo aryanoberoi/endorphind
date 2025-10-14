@@ -11,9 +11,7 @@ const AboutUs = () => {
       <div className="max-w-5xl mx-auto text-center relative z-10">
         {/* Heading */}
         <h2 
-          className="text-4xl md:text-5xl lg:text-6xl font-heading mb-8 md:mb-12 
-                     bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
-                     bg-clip-text text-transparent drop-shadow-lg animate-pulse-subtle"
+          className="text-[#e33d22] text-4xl font-myfont"
         >
           About Us
         </h2>

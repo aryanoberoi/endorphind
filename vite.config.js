@@ -10,4 +10,20 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Add this server configuration for client-side routing
+  server: {
+    historyApiFallback: true,
+  },
+  // Add this build configuration for production
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+  // This is the key part - handle all routes by serving index.html
+  preview: {
+    historyApiFallback: true,
+  },
 });

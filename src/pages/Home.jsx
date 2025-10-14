@@ -16,20 +16,16 @@ export default function Home() {
       <div className="w-screen">
         <Navbar />
         <main className="min-h-[82vh] flex flex-col justify-center">
-          {/* Main content of the home page goes here */}
-          {/* <img src="asset2.png" alt="Logo1" className="w-1/3 h-1/3 mx-auto" /> */}
-          {/* <ScrollVideoPlayer/> */}
-
-          <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+          <div style={{ width: '100%', height: '600px', position: 'relative', backgroundColor: '#070A0D' }}>
             <Particles
-              particleColors={['#ffffff', '#ffffff']}
-              particleCount={600}
+              particleColors={['#E33D22','#C57E1B', '#ED9907']}
+              particleCount={7500}
               particleSpread={10}
-              speed={0.1}
-              particleBaseSize={50}
+              speed={0.05}
+              particleBaseSize={27}
               moveParticlesOnHover={false}
               alphaParticles={false}
-              disableRotation={false}
+              disableRotation={true}
             />
                       <AboutUs />
           </div>

@@ -9,7 +9,8 @@ export default {
       fontFamily: {
         primary: ['Poppins', 'sans-serif'],
         secondary: ['Inter', 'sans-serif'],
-        heading: ['Playfair Display', 'serif'],
+        heading: ['Robit'],
+        myfont: ['Futura'],
       },
       keyframes: {
         float: {
