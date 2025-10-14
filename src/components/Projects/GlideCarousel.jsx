@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -18,6 +18,7 @@ const GlideCarousel = () => {
         { type: 'image', src: '/Carousel/8.jpg' },
         { type: 'image', src: '/Carousel/9.jpg' },
         { type: 'video', src: '/Carousel/10.mp4' },
+        { type: 'video', src: '/Carousel/11.mp4' },
     ];
 
     const breakpoints = {
@@ -75,7 +76,6 @@ const GlideCarousel = () => {
                 grabCursor={true}
                 centeredSlides={true}
                 loop={true}
-                // autoplay={{ delay: 3000, disableOnInteraction: false }}
                 navigation={{
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -89,7 +89,7 @@ const GlideCarousel = () => {
             >
                 {slides.map((slide, index) => (
                     <SwiperSlide key={index} className="!w-full !max-w-[300px] sm:!max-w-[400px] md:!max-w-[500px] lg:!max-w-[600px] !aspect-video !transition-transform !duration-300 !ease-out">
-                        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl border border-white">
+                        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl border border-white relative">
                             {slide.type === 'image' ? (
                                 <img
                                     src={slide.src}
@@ -98,15 +98,13 @@ const GlideCarousel = () => {
                                     loading="lazy"
                                 />
                             ) : (
-                                <video
-                                    src={slide.src}
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    className="w-full h-full object-cover"
-                                />
+                                <VideoWithMute src={slide.src} />
                             )}
+                            <img 
+                                src="studioslogo.png" 
+                                alt="logo" 
+                                className="absolute bottom-2 right-2 w-40 h-10"
+                            />
                         </div>
                     </SwiperSlide>
                 ))}
@@ -158,6 +156,37 @@ const GlideCarousel = () => {
                     }
                 }
             `}</style>
+        </div>
+    );
+};
+
+const VideoWithMute = ({ src }) => {
+    const [isMuted, setIsMuted] = useState(true);
+
+    const handleMuteToggle = () => {
+        setIsMuted(!isMuted);
+    };
+
+    return (
+        <div className="relative h-full">
+            <video
+                src={src}
+                autoPlay
+                loop
+                playsInline
+                muted={isMuted}
+                className="w-full h-full object-cover"
+            />
+            <button
+                onClick={handleMuteToggle}
+                className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-2">
+                {isMuted ? '🔇' : '🔊'}
+            </button>
+            {/* <img 
+                src="studioslogo.png" 
+                alt="logo" 
+                className="absolute bottom-2 right-2 w-15 h-10"
+            /> */}
         </div>
     );
 };
