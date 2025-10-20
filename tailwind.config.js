@@ -10,7 +10,7 @@ export default {
         primary: ['Poppins', 'sans-serif'],
         secondary: ['Inter', 'sans-serif'],
         heading: ['Robit'],
-        myfont: ['Futura'],
+        myfont: ['Helvetica Neue'],
       },
       keyframes: {
         float: {

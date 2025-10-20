@@ -64,7 +64,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-4 z-40 flex justify-center items-center p-6 bg-transparent border border-gray-300 rounded-md text-white" style={{ width: '70%', margin: '0 auto', marginTop: '10px' }}>
-      <div className="text-2xl font-bold mr-auto">Endorphind</div>
+      <img src="FindAura..png" alt="Endorphind Logo" className="mr-auto h-20" />
       <button
         onClick={toggleMenu}
         className="md:hidden ml-auto"

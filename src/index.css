@@ -8,7 +8,7 @@
 :root {
   line-height: 1.5;
   font-weight: 400;
-  --font-heading: 'Playfair Display', serif;
+  --font-heading: 'Helvetica Neue', serif;
   --font-primary: 'Poppins', sans-serif;
   --font-secondary: 'Inter', sans-serif;
 
@@ -203,6 +203,13 @@ button:focus-visible {
   font-family: 'Robit';
   src: url('/fonts/robittrial-medium.otf') format('opentype');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Robit';
+  src: url('/fonts/robittrial-bold.otf') format('opentype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
