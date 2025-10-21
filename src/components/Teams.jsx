@@ -1,5 +1,6 @@
 import React from 'react';
 import BackgroundLayout from './ui/BackgroundLayout';
+import ConnectButtonAndForm from './ui/Connect';
 
 const Teams = () => {
   const teamMembers = [
@@ -116,9 +117,7 @@ const Teams = () => {
             <div className="w-20 h-px bg-gradient-to-r from-gray-600 to-transparent"></div>
           </div>
           
-          <button className="mt-6 px-8 py-3 bg-gradient-to-r from-gray-700/50 to-gray-800/50 backdrop-blur-md border border-gray-600/50 rounded-full font-semibold text-white hover:from-gray-600/50 hover:to-gray-700/50 hover:border-gray-500/50 transform hover:scale-105 transition-all duration-300">
-            Contact Our Team
-          </button>
+          <ConnectButtonAndForm />
         </div>
       </section>
     </BackgroundLayout>

@@ -3,7 +3,7 @@ const StarBorder = ({
   className = '',
   color = 'white',
   speed = '6s',
-  thickness = 1,
+  thickness = 0,
   children,
   ...rest
 }) => {

@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // for navigation
 import GlassCardCarousel from "../GlassCardCarousel";
-import StatsCardSection from "../StatsCardSection";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -20,10 +19,6 @@ const Projects = () => {
 
       <div>
         <GlassCardCarousel />
-      </div>
-
-      <div>
-        <StatsCardSection />
       </div>
     </div>
   );
