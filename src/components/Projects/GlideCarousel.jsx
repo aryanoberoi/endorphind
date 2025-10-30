@@ -1,194 +1,111 @@
-import React, { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
+import { useEffect, useState, useRef } from 'react';
+import { motion, useMotionValue, useTransform } from 'motion/react';
 
-const GlideCarousel = () => {
-    const slides = [
-        { type: 'image', src: '/Carousel/1.jpg' },
-        { type: 'image', src: '/Carousel/2.jpg' },
-        { type: 'image', src: '/Carousel/3.jpg' },
-        { type: 'image', src: '/Carousel/4.jpg' },
-        { type: 'image', src: '/Carousel/5.jpg' },
-        { type: 'image', src: '/Carousel/6.jpg' },
-        { type: 'image', src: '/Carousel/7.jpg' },
-        { type: 'image', src: '/Carousel/8.jpg' },
-        { type: 'image', src: '/Carousel/9.jpg' },
-        { type: 'video', src: '/Carousel/10.mp4' },
-        { type: 'video', src: '/Carousel/11.mp4' },
-    ];
+const DEFAULT_ITEMS = [
+  { type: 'video', src: 'Carousel/10.mp4' },
+  { type: 'video', src: 'Carousel/11.mp4' },
+  { type: 'image', src: 'Carousel/1.jpg' },
+  { type: 'image', src: 'Carousel/2.jpg' },
+  { type: 'image', src: 'Carousel/3.jpg' },
+  { type: 'image', src: 'Carousel/4.jpg' },
+  { type: 'image', src: 'Carousel/5.jpg' },
+  { type: 'image', src: 'Carousel/6.jpg' },
+  { type: 'image', src: 'Carousel/7.jpg' },
+  { type: 'image', src: 'Carousel/8.jpg' },
+  { type: 'image', src: 'Carousel/9.jpg' }
+];
 
-    const breakpoints = {
-        320: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: false,
-            }
-        },
-        640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 50,
-                depth: 100,
-                modifier: 1.2,
-                slideShadows: false,
-            }
-        },
-        1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 100,
-                depth: 150,
-                modifier: 1.5,
-                slideShadows: false,
-            }
-        },
-        1280: {
-            slidesPerView: 3,
-            spaceBetween: 40,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 100,
-                depth: 150,
-                modifier: 1.5,
-                slideShadows: false,
-            }
-        }
-    };
+const DRAG_BUFFER = 0;
+const VELOCITY_THRESHOLD = 500;
+const GAP = 16;
+const SPRING_OPTIONS = { type: 'spring', stiffness: 300, damping: 30 };
 
-    return (
-        <div className="w-full py-5 md:py-10 px-4 md:px-6">
-            <Swiper
-                modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
-                effect="coverflow"
-                grabCursor={true}
-                centeredSlides={true}
-                loop={true}
-                navigation={{
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                }}
-                pagination={{ 
-                    clickable: true,
-                    el: '.swiper-pagination'
-                }}
-                breakpoints={breakpoints}
-                className="mySwiper"
-            >
-                {slides.map((slide, index) => (
-                    <SwiperSlide key={index} className="!w-full !max-w-[300px] sm:!max-w-[400px] md:!max-w-[500px] lg:!max-w-[600px] !aspect-video !transition-transform !duration-300 !ease-out">
-                        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl border border-white relative">
-                            {slide.type === 'image' ? (
-                                <img
-                                    src={slide.src}
-                                    alt={`slide ${index + 1}`}
-                                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                                    loading="lazy"
-                                />
-                            ) : (
-                                <VideoWithMute src={slide.src} />
-                            )}
-                            <img 
-                                src="studioslogo.png" 
-                                alt="logo" 
-                                className="absolute bottom-2 right-2 w-40 h-10"
-                            />
-                        </div>
-                    </SwiperSlide>
-                ))}
-                
-                {/* Navigation Arrows */}
-                <div className="swiper-button-prev !text-white !bg-black/30 hover:!bg-black/50 !rounded-full !w-10 !h-10 md:!w-12 md:!h-12 after:!text-lg md:after:!text-xl !transition-all !duration-300"></div>
-                <div className="swiper-button-next !text-white !bg-black/30 hover:!bg-black/50 !rounded-full !w-10 !h-10 md:!w-12 md:!h-12 after:!text-lg md:after:!text-xl !transition-all !duration-300"></div>
-                
-                {/* Pagination */}
-                <div className="swiper-pagination !bottom-2 md:!bottom-4"></div>
-            </Swiper>
+export default function Carousel({
+  items = DEFAULT_ITEMS,
+  autoplay = false,
+  autoplayDelay = 3000,
+  pauseOnHover = false,
+  loop = true, // Enable loop by default for infinite scrolling
+  round = false
+}) {
+  const baseWidth = window.innerWidth * 0.9;
+  const itemWidth = baseWidth / 3;
+  const trackItemOffset = itemWidth + GAP;
 
-            {/* Global styles using style tag */}
-            <style>{`
-                .mySwiper {
-                    width: 100%;
-                    padding: 20px 0;
-                }
-                
-                .swiper-slide-active {
-                    transform: scale(1.05) !important;
-                    z-index: 1;
-                }
-                
-                .swiper-pagination-bullet {
-                    background: white;
-                    opacity: 0.5;
-                    width: 8px;
-                    height: 8px;
-                    margin: 0 4px;
-                    transition: all 0.3s ease;
-                }
-                
-                .swiper-pagination-bullet-active {
-                    background: #3b82f6;
-                    opacity: 1;
-                    width: 12px;
-                    height: 12px;
-                }
-                
-                @media (max-width: 768px) {
-                    .mySwiper {
-                        padding: 15px 0;
-                    }
-                    
-                    .swiper-button-prev,
-                    .swiper-button-next {
-                        display: none !important;
-                    }
-                }
-            `}</style>
-        </div>
+  const carouselItems = loop ? [...items, ...items.slice(0, 2)] : items; // Repeat first items for smooth infinite effect
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const x = useMotionValue(0);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => 
+      (prev + 1) % carouselItems.length
     );
-};
+  };
+  
+  const handlePrev = () => {
+    setCurrentIndex((prev) => 
+      (prev - 1 + carouselItems.length) % carouselItems.length
+    );
+  };
 
-const VideoWithMute = ({ src }) => {
-    const [isMuted, setIsMuted] = useState(true);
+  const dragProps = loop ? {} : {
+    dragConstraints: {
+      left: -trackItemOffset * (carouselItems.length - 1),
+      right: 0
+    }
+  };
 
-    const handleMuteToggle = () => {
-        setIsMuted(!isMuted);
-    };
-
-    return (
-        <div className="relative h-full">
-            <video
-                src={src}
+  return (
+    <div className="relative overflow-hidden p-4" style={{ width: '90vw', height: '300px' }}>
+      <button
+        className="absolute left-0 top-0 w-12 h-full bg-black bg-opacity-50 text-white text-3xl flex items-center justify-center z-10"
+        onClick={handlePrev}
+      >
+        &lt;
+      </button>
+      <motion.div
+        className="flex"
+        drag="x"
+        {...dragProps}
+        style={{
+          x,
+          width: itemWidth * carouselItems.length,
+          gap: `${GAP}px`
+        }}
+        animate={{ x: -(currentIndex * trackItemOffset) }}
+        transition={SPRING_OPTIONS}
+      >
+        {carouselItems.map((item, index) => (
+          <motion.div
+            key={index}
+            className="relative shrink-0 flex-none"
+            style={{ width: itemWidth }}
+          >
+            {item.type === 'image' ? (
+              <img
+                src={item.src}
+                alt={`Carousel item ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <video
+                src={item.src}
                 autoPlay
                 loop
-                playsInline
-                muted={isMuted}
+                muted
+                controls
                 className="w-full h-full object-cover"
-            />
-            <button
-                onClick={handleMuteToggle}
-                className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-2">
-                {isMuted ? '🔇' : '🔊'}
-            </button>
-            {/* <img 
-                src="studioslogo.png" 
-                alt="logo" 
-                className="absolute bottom-2 right-2 w-15 h-10"
-            /> */}
-        </div>
-    );
-};
-
-export default GlideCarousel;
+              />
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
+      <button
+        className="absolute right-0 top-0 w-12 h-full bg-black bg-opacity-100 text-white text-3xl flex items-center justify-center z-10"
+        onClick={handleNext}
+      >
+        &gt;
+      </button>
+    </div>
+  );
+}
