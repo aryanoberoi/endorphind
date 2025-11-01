@@ -1,117 +1,111 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState } from "react";
 
+const Findaura = () => {
+  const [showForm, setShowForm] = useState(false);
 
-function Avatar() {
-    const [isSessionActive, setIsSessionActive] = useState(false);
-    const localVideoRef = useRef(null);
-    const avatarVideoRef = useRef(null);
-  
-    const [microphones, setMicrophones] = useState([{ id: 'mic1', label: 'Default Microphone' }]);
-    const [webcams, setWebcams] = useState([{ id: 'cam1', label: 'Default Webcam' }]);
-  
-    const [selectedMic, setSelectedMic] = useState('mic1');
-    const [selectedCam, setSelectedCam] = useState('cam1');
+  return (
+    <div
+      className="flex flex-col items-center justify-center h-full"
+      style={{ fontFamily: "robit, sans-serif", background: "transparent" }}
+    >
+      <img
+        src="/FindAura..png"
+        alt="FindAura Logo"
+        className="mb-6"
+        style={{ width: "220px", height: "auto", background: "transparent" }}
+      />
+      <h2
+        className="text-3xl md:text-4xl font-bold text-white text-center mb-8"
+        style={{ background: "transparent" }}
+      >
+        Coming soon
+      </h2>
+      <p
+        className="text-lg md:text-2xl text-gray-300 text-center max-w-2xl"
+        style={{ fontFamily: "robit, sans-serif", background: "transparent" }}
+      >
+        We are building a one of a kind agentic AI based mental health and wellness platform, built solely by therapists, psychologists, and mental health professionals.
+        <br />
+        We are not looking to replace human therapists but to assist client-therapist connection with AI as an aid.
+      </p>
 
-    
-  
-    useEffect(() => {
-      // Logic to get local stream and populate devices would go here
-    }, []);
-  
-    const handleStartStop = async () => {
-        if (isSessionActive) {
-            // Logic to close the session
-            setIsSessionActive(false);
-            // Clean up peer connection, etc.
-        } else {
-            try {
-                // 1. Fetch the ephemeral token from your backend
-                const response = await fetch('/api/realtime/session', {
-                    method: 'POST',
-                });
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-    
-                const data = await response.json();
-                console.log('Session data received:', data);
-                
-                // 2. Use the token to start the WebRTC session
-                startWebRTCSession(data.client_secret);
-    
-                setIsSessionActive(true);
-            } catch (error) {
-                console.error('Failed to create or start the session:', error);
-                setIsSessionActive(false);
-            }
-        }
-    };
+      <button
+        className="mt-8 px-8 py-3 rounded-md bg-[#DE9F3A] font-semibold hover:bg-[#c98b2d] transition-all duration-200 text-lg"
+        style={{
+          fontFamily: "robit, sans-serif",
+          outline: "none",
+          border: "none",
+          marginBottom: showForm ? '32px' : '0',
+          color: '#DE9F3A',
+          backgroundColor: "#222"
+        }}
+        onClick={() => setShowForm(true)}
+      >
+        Sign Up
+      </button>
 
-    // This function will contain the WebRTC logic
-const startWebRTCSession = async (clientSecret) => {
-    // WebRTC logic will go here
-    console.log("Starting WebRTC session with client secret:", clientSecret);
-};
-
-  
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-        <div className="bg-white p-8 rounded-lg shadow-md text-center">
-          <h1 className="text-3xl font-bold text-indigo-800 mb-6">HeyGen Avatar Interface</h1>
-          <div className="flex flex-col items-center space-y-4 mb-6">
+      {showForm && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 50,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(0,0,0,0.13)"
+          }}
+        >
+          <div
+            style={{
+              background: "transparent", // Changed to transparent
+              padding: "16px",
+              borderRadius: "6px",
+              minWidth: "300px",
+              position: "relative",
+              maxWidth: "97vw",
+              width: "auto"
+            }}
+          >
             <button
-              onClick={handleStartStop}
-              className={`px-6 py-2 text-lg rounded-md transition-colors duration-300
-                ${isSessionActive ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'} text-white`}
+              aria-label="Close"
+              style={{
+                position: "absolute",
+                top: "8px",
+                right: "12px",
+                background: "none",
+                border: "none",
+                fontSize: "24px",
+                color: "#111", // Black cross button
+                cursor: "pointer",
+                fontWeight: "bold",
+                lineHeight: "1"
+              }}
+              onClick={() => setShowForm(false)}
             >
-              {isSessionActive ? 'Stop Session' : 'Start Session'}
+              &times;
             </button>
-            <div className="flex items-center space-x-4">
-              <label htmlFor="mic-select" className="text-gray-700">Microphone:</label>
-              <select
-                id="mic-select"
-                value={selectedMic}
-                onChange={(e) => setSelectedMic(e.target.value)}
-                className="p-2 border border-gray-300 rounded-md"
-              >
-                {microphones.map(mic => (
-                  <option key={mic.id} value={mic.id}>{mic.label}</option>
-                ))}
-              </select>
-              <label htmlFor="cam-select" className="text-gray-700">Webcam:</label>
-              <select
-                id="cam-select"
-                value={selectedCam}
-                onChange={(e) => setSelectedCam(e.target.value)}
-                className="p-2 border border-gray-300 rounded-md"
-              >
-                {webcams.map(cam => (
-                  <option key={cam.id} value={cam.id}>{cam.label}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <video
-              ref={localVideoRef}
-              autoPlay
-              muted
-              className="hidden" // Hides the local video feed
-              title="Local Webcam Feed"
-            ></video>
-            <video
-              ref={avatarVideoRef}
-              autoPlay
-              playsInline
-              controls
-              className="w-full max-w-xl border-2 border-gray-300 rounded-lg"
-              title="HeyGen Avatar Stream"
-            ></video>
+            <iframe
+              width="540"
+              height="305"
+              src="https://31e53447.sibforms.com/serve/MUIFAAhvHRBolcC4UlIZeD6iw1btrIL6i8L2bVj5zuxLKKwkvcrMk1pPdmbSf2vg0Emt-RM2gaOSan8W0Hw4BXt_-WWWNYAZAut-HRZnz0YrDWF9fG7CcwABTR1Azu9fXaDrf8AQAwMmk9kK7x7ETydZYHGrzWVqVxkFqlXrkjseDNwgs48UKLKQZCsaF0WXbHkQEfhZsf1MuuvAaQ=="
+              frameBorder="0"
+              scrolling="auto"
+              allowFullScreen
+              title="Findaura Signup"
+              style={{
+                display: "block",
+                margin: "0 auto",
+                maxWidth: "100%",
+                background: "transparent",
+                border: "none"
+              }}
+            />
           </div>
         </div>
-      </div>
-    );
-  }
-  
-  export default Avatar;
+      )}
+    </div>
+  );
+};
+
+export default Findaura;

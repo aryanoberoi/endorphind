@@ -80,12 +80,8 @@ const App = () => {
                             </a>
                         </div>
                     </div>
-
                     <p className="text-gray-500 text-sm text-center mt-1" style={{ fontFamily: 'Robit' }}>
-                    Endorphind Solutions Pvt Ltd.
-                    </p>
-                    <p className="text-gray-500 text-sm text-center mt-1" style={{ fontFamily: 'Robit' }}>
-                        B190, Sector 31, Noida -301301
+                        Endorphind all rights reserved
                     </p>
                 </div>
             </footer>

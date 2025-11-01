@@ -8,7 +8,7 @@ import Studios from "./pages/Studios"
 import Teams from "./pages/Team"
 import BackgroundLayout from './components/ui/BackgroundLayout'
 import Findaura from './pages/Findaura'
-
+import Aryan from './pages/Aryan'
 function App() {
   return (
         <BackgroundLayout>
@@ -20,6 +20,7 @@ function App() {
             <Route path="/webprojects" element={<WebProjects />} />
             <Route path="/teams" element={<Teams />} />
             <Route path="/findaura" element={<Findaura />} />
+            <Route path="/aryan" element={<Aryan />} />
           </Routes>
         </BackgroundLayout>
   )
