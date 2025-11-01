@@ -1,53 +1,35 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // for navigation
-import GlideCarousel from "./GlideCarousel";
 import GlassCardCarousel from "./GlassCardCarousel";
-import StatsCardSection from "./StatsCardSection";
-
 const Projects = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-transparent text-gray-200 flex flex-col items-center py-16 px-6 space-y-20">
+    <div
+      className="bg-transparent text-gray-200 flex flex-col items-center py-16 px-6 space-y-20"
+      style={{ fontFamily: "robit, sans-serif" }}
+    >
       {/* Header Section */}
-      <div className="text-center max-w-4xl space-y-6">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-white tracking-tight">
-          Projects
+      <div
+        className="text-center max-w-4xl space-y-6"
+        style={{ fontFamily: "robit, sans-serif" }}
+      >
+        <h1
+          className="text-5xl md:text-6xl font-extrabold tracking-tight"
+          style={{ color: "#FF9100", fontFamily: "robit, sans-serif" }}
+        >
+          Dev Projects
         </h1>
-        <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
-          Our portfolio is a gallery of projects that transformed ideas into
-          groundbreaking solutions. Explore our curated collection of case
-          studies and see what we can build for you.
+        <p
+          className="text-lg md:text-xl text-gray-400 leading-relaxed"
+          style={{ fontFamily: "robit, sans-serif" }}
+        >
+          We build projects that are a blend of technology and creativity. We are primarily focused on Full Stack Development and AI/GenAI applications.
+          <br /> Our goal is to build visually appealing projects. We have a strong focus on UI/UX design.
         </p>
-
-        {/* Buttons */}
-        <div className="flex justify-center gap-6 pt-4">
-          <button
-            onClick={() => navigate("/webprojects")}
-            className="px-6 py-3 bg-indigo-600 text-white rounded-2xl font-semibold shadow-md hover:bg-indigo-700 transition duration-300"
-          >
-            Web Projects
-          </button>
-          <button
-            onClick={() => navigate("/studios")}
-            className="px-6 py-3 bg-transparent border border-gray-400 text-gray-200 rounded-2xl font-semibold shadow-md hover:bg-gray-700 hover:border-gray-600 transition duration-300"
-          >
-            Endorphind Studios
-          </button>
-        </div>
       </div>
-
-      {/* Carousels & Stats */}
-      <div className="flex">
-        <GlideCarousel />
-      </div>
-
-      <div>
+      <div style={{ fontFamily: "robit, sans-serif" }}>
         <GlassCardCarousel />
-      </div>
-
-      <div>
-        <StatsCardSection />
       </div>
     </div>
   );

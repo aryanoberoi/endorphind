@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import {
   HomeIcon,
-  GearIcon,
-  EnvelopeClosedIcon,
   HamburgerMenuIcon,
   Cross1Icon,
   PersonIcon,
   MagnifyingGlassIcon,
 } from "@radix-ui/react-icons";
 import { useNavigate, Link } from "react-router-dom";
+import ConnectButtonAndForm from "./Connect";
 
 const NAV_TABS = [
   { name: "home", label: "Home", Icon: HomeIcon, route: "/" },
-  { name: "services", label: "Services", Icon: GearIcon, route: "/services" },
-  { name: "studios", label: "Studios", Icon: EnvelopeClosedIcon, route: "/studios" },
-  {
-    name: "projects",
-    label: "Projects",
-    Icon: EnvelopeClosedIcon,
-    route: "/projects",
-  },
-  { name: "team", label: "Team", Icon: PersonIcon, route: "/team" },
+  { name: "team", label: "Our Team", Icon: PersonIcon, route: "/team" },
   { name: "Findaura", label: "Findaura", Icon: MagnifyingGlassIcon, route: "/findaura" },
 ];
 
@@ -49,6 +40,10 @@ const MobileMenuOverlay = ({ isOpen, onClose }) => {
               {tab.label}
             </Link>
           ))}
+          {/* Add Connect button at the bottom of the mobile menu */}
+          <div className="mt-6">
+            <ConnectButtonAndForm />
+          </div>
         </nav>
       </div>
     </div>
@@ -80,7 +75,7 @@ const Navbar = () => {
       >
         <HamburgerMenuIcon className="w-6 h-6" />
       </button>
-      <div className="hidden md:flex space-x-6" style={{ fontFamily: "robit, sans-serif" }}>
+      <div className="hidden md:flex space-x-6 items-center" style={{ fontFamily: "robit, sans-serif" }}>
         {NAV_TABS.map((tab) => (
           <Link
             key={tab.name}
@@ -92,6 +87,10 @@ const Navbar = () => {
             {tab.label}
           </Link>
         ))}
+        {/* Place the connect button to the right most */}
+        <div className="ml-6">
+          <ConnectButtonAndForm />
+        </div>
       </div>
       <MobileMenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </nav>

@@ -6,14 +6,14 @@ const Projects = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ fontFamily: "robit, sans-serif" }} className="bg-transparent text-gray-200 flex flex-col items-center py-16 px-6 space-y-20">
+    <div style={{ fontFamily: "Robit, sans-serif" }} className="bg-transparent text-gray-200 flex flex-col items-center py-16 px-6 space-y-20">
       {/* Header Section */}
       <div className="text-center max-w-4xl space-y-6" style={{ fontFamily: "robit, sans-serif" }}>
         <h1 className="text-5xl md:text-6xl font-extrabold text-white tracking-tight" style={{ fontFamily: "robit, sans-serif" }}>
           Projects
         </h1>
       </div>
-      <div style={{ fontFamily: "robit, sans-serif" }}>
+      <div style={{ fontFamily: "Robit, sans-serif" }}>
         <GlassCardCarousel />
       </div>
     </div>
