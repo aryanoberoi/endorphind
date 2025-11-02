@@ -205,7 +205,7 @@ export default function AryanPortfolio() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/aryan-oberoi/"
+                  href="https://www.linkedin.com/in/aryan-oberoi-1b4358195/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -258,19 +258,12 @@ export default function AryanPortfolio() {
             How I Got Here
           </h2>
           <p className="text-gray-200 text-xl leading-relaxed text-center mb-3" style={{ background: "transparent" }}>
-            {/* removed m-dash here: "curiosity—about" --> "curiosityabout" */}
-            My journey began with curiosityabout how things work and how we connect. From tweaking front-end designs at midnight, to running video edits, to meditating on ways tech can heal, I found immense joy in learning and creating.
-          </p>
-          <p className="text-gray-300 text-lg leading-relaxed text-center mb-3" style={{ background: "transparent" }}>
-            {/* removed m-dashes: "project—code or canvas—taught" --> "projectcode or canvastaught" */}
-            Along the way, I discovered that my true drive is shaping tools and experiences that empower others. Each projectcode or canvastaught me how creativity and empathy can redefine what's possible.
+            My journey began with curiosity about how things work and how we connect. From tweaking front-end designs at midnight, to running video edits, to meditating on ways tech can heal, I found immense joy in learning and creating.
           </p>
           <p className="text-gray-300 text-lg leading-relaxed text-center" style={{ background: "transparent" }}>
             Today, I’m building at Endorphind, fusing technology, story, and wellness into meaningful digital adventures. The journey continues: always learning, always building, always connecting.
           </p>
         </section>
-
-        {/* Projects Section - moved below 'My Journey' and 'How I Got Here' */}
         <section className="w-full max-w-4xl mb-16" style={{ background: "transparent" }}>
           <h2
             className="text-3xl md:text-4xl font-bold mb-8 text-center"
@@ -335,16 +328,17 @@ export default function AryanPortfolio() {
           >
             My Spiritual Journey
           </h2>
-          {/* Remove m-dashes from below */}
           <p className="text-gray-200 text-xl leading-relaxed text-center mb-3" style={{ background: "transparent" }}>
-            My spiritual journey has been a continuous exploration of consciousness, purpose, and interconnectedness. From a young age, I found myself drawn to the deeper questions of existenceseeking meaning beyond the surface and aspiring to understand the intricate relationship between mind, spirit, and the universe.
+            My spiritual journey has been a continuous exploration of consciousness, purpose, and interconnectedness. From a young age, I found myself drawn to the deeper questions of existence, seeking meaning beyond the surface and aspiring to understand the intricate relationship between mind, spirit, and the universe.
           </p>
           <p className="text-gray-300 text-lg leading-relaxed text-center mb-3" style={{ background: "transparent" }}>
             Practices like meditation, yoga, and mindfulness have been instrumental in nurturing my inner awareness and resilience. These disciplines have not only provided clarity and grounding, but have deeply influenced how I navigate challenges, create, and relate to others. Through spiritual inquiry, I have learned to appreciate the beauty of presence, the power of silence, and the wisdom that comes from simply being.
           </p>
-          {/* Remove m-dashes here */}
+          <p className="text-gray-300 text-lg leading-relaxed text-center mb-3" style={{ background: "transparent" }}>
+            Alongside these, I also regularly dabble into the realms of astrology and occult sciences, always with a spirit of curiosity and the intention of using these ancient knowledges for the well-being and benefit of all. Exploring astrology and occult teachings complements my spiritual pursuits, providing fresh perspectives and insights that support my own growth and help others find meaning, guidance, and harmony in their lives.
+          </p>
           <p className="text-gray-300 text-lg leading-relaxed text-center" style={{ background: "transparent" }}>
-            My work is an extension of this inner journeyan earnest attempt to channel creativity, compassion, and consciousness into everything I build and share. My vision is to bridge technology and spirituality, helping others find joy, connection, and purpose in the digital age while nurturing my own path towards a more awakened and harmonious existence.
+            My work is an extension of this inner journey, an earnest attempt to channel creativity, compassion, and consciousness into everything I build and share. My vision is to bridge technology and spirituality, helping others find joy, connection, and purpose in the digital age while nurturing my own path towards a more awakened and harmonious existence.
           </p>
         </section>
       </main>

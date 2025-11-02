@@ -1,7 +1,6 @@
 
 import LogoLoop from '../components/LogoLoop';
 import { SiReact, SiTypescript, SiTailwindcss, SiJavascript, SiPython, SiFastapi, SiFlask, SiAdobecreativecloud, SiLangchain, SiVercel, SiOpenai, SiOpencv, SiOllama, SiGooglegemini, SiN8N, SiAdobe } from 'react-icons/si';
-import ASCIIText from '../components/ASCIIText';
 
 const imageLogos = [
   { src: "/Logos/comfy.png", alt: "ComfyUI", href: "https://comfyui.org" }

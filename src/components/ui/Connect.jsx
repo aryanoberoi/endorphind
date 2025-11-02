@@ -2,6 +2,10 @@ import React, { useState, useCallback } from 'react';
 import { Rocket, Check, X, MessageSquare } from 'lucide-react';
 import StarBorder from '../StarBorder';
 
+const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
+const BREVO_API_KEY = import.meta.env.VITE_BREVO_API_KEY; 
+const CONTACT_LIST_IDS = [5]; 
+
 const ConnectButtonAndForm = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [email, setEmail] = useState('');
@@ -10,6 +14,7 @@ const ConnectButtonAndForm = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [emailError, setEmailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
+    const [apiError, setApiError] = useState('');
 
     const toggleForm = () => {
         setIsFormOpen(prev => !prev);
@@ -21,18 +26,18 @@ const ConnectButtonAndForm = () => {
             setIsSubmitted(false);
             setEmailError('');
             setPhoneError('');
+            setApiError('');
         }
     };
 
-    const handleButtonClick = useCallback((e) => {
+    const handleButtonClick = useCallback(async (e) => {
         e.preventDefault();
 
-        // Reset errors
         setEmailError('');
         setPhoneError('');
+        setApiError('');
 
         let valid = true;
-        // Basic email and phone validation
         if (!email || !/\S+@\S+\.\S+/.test(email)) {
             setEmailError('Please enter a valid email address.');
             valid = false;
@@ -41,26 +46,51 @@ const ConnectButtonAndForm = () => {
             setPhoneError('Please enter a valid phone number.');
             valid = false;
         }
-
-        if (!valid) {
-            return;
-        }
+        if (!valid) return;
 
         setIsSubmitted(true);
 
-        // Simulate API call delay
-        setTimeout(() => {
-            console.log('Form submission simulated. Values:', { email, phone, message });
-            // Keep the 'Done' state visible for a moment, then reset and close the form.
+        // Try to send contact data to Brevo
+        try {
+            // You can adjust FIRSTNAME logic to split from email/user input if desired
+            const res = await fetch(BREVO_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'api-key': BREVO_API_KEY
+                },
+                body: JSON.stringify({
+                    email: email,
+                    attributes: {
+                        PHONE: phone,
+                        MESSAGE: message
+                    },
+                    listIds: CONTACT_LIST_IDS
+                })
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.message || 'Failed to add contact.');
+            }
+            // Optionally: show or log response
+            console.log('Brevo response:', data);
+
+            // Show success and close form after delay
             setTimeout(() => {
                 setEmail('');
                 setPhone('');
                 setMessage('');
                 setIsSubmitted(false);
-                setIsFormOpen(false); // Close the form after success
+                setIsFormOpen(false);
             }, 1500);
-        }, 500);
-    }, [email, phone, message, emailError, phoneError]);
+        } catch (err) {
+            setIsSubmitted(false);
+            setApiError(
+                'There was an error submitting your request. Please try again later.'
+            );
+        }
+    }, [email, phone, message]);
 
     const isFormValid = email && phone && !emailError && !phoneError;
 
@@ -78,14 +108,14 @@ const ConnectButtonAndForm = () => {
 
     return (
         <div className="relative w-full font-robit">
-                <button
-                    onClick={toggleForm}
-                    className="w-full h-12 md:w-auto md:min-w-[12rem] px-6 text-white font-semibold rounded-full shadow-lg transition-all duration-300
+            <button
+                onClick={toggleForm}
+                className="w-full h-12 md:w-auto md:min-w-[12rem] px-6 text-white font-semibold rounded-full shadow-lg transition-all duration-300
                         bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95"
-                    style={{ fontFamily: 'Robit' }}
-                >
-                    {ButtonLabel}
-                </button>
+                style={{ fontFamily: 'Robit' }}
+            >
+                {ButtonLabel}
+            </button>
             {isFormOpen && (
                 <div className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-gray-950 border border-blue-600 rounded-xl shadow-2xl p-6 transition-all duration-300 ease-in-out w-full max-w-md mx-auto">
@@ -145,6 +175,9 @@ const ConnectButtonAndForm = () => {
                             <p className="text-gray-400 text-sm">
                                 Please share details about your project or services you are interested in.
                             </p>
+                            {apiError && (
+                                <p className="text-red-500 text-xs mb-2">{apiError}</p>
+                            )}
                             <button
                                 type="submit"
                                 disabled={!isFormValid || isSubmitted}
