@@ -9,7 +9,7 @@ import Teams from "./pages/Team"
 import BackgroundLayout from './components/ui/BackgroundLayout'
 import Findaura from './pages/Findaura'
 import Aryan from './pages/Aryan'
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   return (
