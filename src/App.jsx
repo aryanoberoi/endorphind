@@ -13,7 +13,8 @@ import { Analytics } from "@vercel/analytics/next"
 
 function App() {
   return (
-    <Analytics>
+    <>
+    <Analytics />
         <BackgroundLayout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -26,7 +27,7 @@ function App() {
             <Route path="/aryan" element={<Aryan />} />
           </Routes>
         </BackgroundLayout>
-    </Analytics>
+    </>
   )
 }
 
