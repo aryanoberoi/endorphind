@@ -9,8 +9,11 @@ import Teams from "./pages/Team"
 import BackgroundLayout from './components/ui/BackgroundLayout'
 import Findaura from './pages/Findaura'
 import Aryan from './pages/Aryan'
+import { Analytics } from "@vercel/analytics/next"
+
 function App() {
   return (
+    <Analytics>
         <BackgroundLayout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -23,6 +26,7 @@ function App() {
             <Route path="/aryan" element={<Aryan />} />
           </Routes>
         </BackgroundLayout>
+    </Analytics>
   )
 }
 
