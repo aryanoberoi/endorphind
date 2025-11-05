@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BackgroundLayout from './ui/BackgroundLayout';
 import ConnectButtonAndForm from './ui/Connect';
+import WebFont from 'webfontloader';
 
 const Teams = () => {
+  useEffect(() => {
+    WebFont.load({
+      custom: {
+        families: ['Robit'], // The font-family name from your @font-face rule
+        urls: ['./index.css'] // Path to your CSS file containing the @font-face rule
+      },
+    });
+  }, []);
   const teamMembers = [
     {
       name: 'Aryan Oberoi',
@@ -58,11 +67,11 @@ const Teams = () => {
         <div className="relative z-10 text-center mb-16 px-4">
           <div className="inline-flex items-center space-x-2 text-gray-400 mb-4">
             <div className="w-12 h-px"></div>
-            <span className="text-sm font-semibold tracking-widest">MEET THE TEAM</span>
+            <span className="text-sm font-semibold tracking-widest" style={{ fontFamily: 'Robit, sans-serif', color: '#DE9F3A' }}>MEET THE TEAM</span>
             <div className="w-12 h-px"></div>
           </div>
-          
-          <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+
+          <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'Robit, sans-serif' }}>
             A dedicated team of professionals bringing diverse expertise and innovation to every project.
           </p>
         </div>
@@ -79,22 +88,22 @@ const Teams = () => {
               ) : null}
               {/* Member Info */}
               <div className="flex-grow text-center md:text-left">
-                <h3 className="text-lg font-semibold text-white mb-2">{member.name}</h3>
-                <p className="text-cyan-400 font-medium text-sm mb-3">{member.role}</p>
-                <p className="text-gray-400 text-sm">{member.bio}</p>
+                <h3 className="text-lg font-semibold text-white mb-2" style={{ fontFamily: 'Robit, sans-serif' }}>{member.name}</h3>
+                <p className="text-cyan-400 font-medium text-sm mb-3" style={{ fontFamily: 'Robit, sans-serif' }}>{member.role}</p>
+                <p className="text-gray-400 text-sm" style={{ fontFamily: 'Robit, sans-serif' }}>{member.bio}</p>
                 <div className="flex justify-center md:justify-start space-x-4 mt-3">
                   {member.socialLinks.instagram && (
-                    <a href={member.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                    <a href={member.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white" style={{ fontFamily: 'Robit, sans-serif' }}>
                       Instagram
                     </a>
                   )}
                   {member.socialLinks.linkedin && (
-                    <a href={member.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                    <a href={member.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white" style={{ fontFamily: 'Robit, sans-serif' }}>
                       LinkedIn
                     </a>
                   )}
                   {member.socialLinks.github && (
-                    <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                    <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white" style={{ fontFamily: 'Robit, sans-serif' }}>
                       GitHub
                     </a>
                   )}
@@ -113,10 +122,10 @@ const Teams = () => {
         <div className="relative z-10 text-center mt-16 px-4">
           <div className="inline-flex items-center space-x-4 text-gray-500">
             <div className="w-20 h-px bg-gradient-to-r from-transparent to-gray-600"></div>
-            <span className="text-sm">READY TO WORK WITH US?</span>
+            <span className="text-sm" style={{ fontFamily: 'Robit, sans-serif' }}>READY TO WORK WITH US?</span>
             <div className="w-20 h-px bg-gradient-to-r from-gray-600 to-transparent"></div>
           </div>
-          
+
           <ConnectButtonAndForm />
         </div>
       </section>
