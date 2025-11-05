@@ -110,9 +110,8 @@ const ConnectButtonAndForm = () => {
         <div className="relative w-full font-robit">
             <button
                 onClick={toggleForm}
-                className="w-full h-12 md:w-auto md:min-w-[12rem] px-6 text-white font-semibold rounded-full shadow-lg transition-all duration-300
-                        bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95"
-                style={{ fontFamily: 'Robit' }}
+                className="w-full h-12 md:w-auto md:min-w-[12rem] px-6 text-white font-semibold rounded-full shadow-lg transition-all duration-300 active:scale-95"
+                style={{ fontFamily: 'Robit', backgroundColor: '#DE9F3A' }}
             >
                 {ButtonLabel}
             </button>
