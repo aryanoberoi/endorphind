@@ -18,7 +18,7 @@ const Teams = () => {
     {
       name: 'Aryan Das',
       role: 'Co Founder and Creative Director',
-      bio: 'Former Google engineer specializing in scalable architecture solutions.',
+      bio: "I am a filmmaker with a strong grasp of meme and pop culture references. My up-to-date knowledge of social media allows me to create content that feels relevant and fresh. That being said, I'm not bound by the algorithm because I believe, in a world of shrinking attention spans, people crave good stories, and no algorithm can beat a well-told narrative.",
       photo: 'team/aryand.png',
       socialLinks: {
         instagram: 'https://instagram.com/aryandas',
