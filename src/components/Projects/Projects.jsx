@@ -16,7 +16,7 @@ const Projects = () => {
       >
         <h1
           className="text-5xl md:text-6xl font-extrabold tracking-tight"
-          style={{ color: "#FF9100", fontFamily: "robit, sans-serif" }}
+          style={{ color: "#DE9F3A", fontFamily: "robit, sans-serif" }}
         >
           Dev Projects
         </h1>
