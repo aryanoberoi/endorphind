@@ -1,7 +1,7 @@
 
 import LogoLoop from '../components/LogoLoop';
 import { SiReact, SiTypescript, SiTailwindcss, SiJavascript, SiPython, SiFastapi, SiFlask, SiAdobecreativecloud, SiLangchain, SiVercel, SiOpenai, SiOpencv, SiOllama, SiGooglegemini, SiN8N, SiAdobe } from 'react-icons/si';
-
+import FlowingMenu from '@/components/FlowingMenu';
 const imageLogos = [
   { src: "/Logos/comfy.png", alt: "ComfyUI", href: "https://comfyui.org" }
 ];
@@ -24,6 +24,23 @@ const techLogos = [
   { node: <SiN8N />, title: "N8N", href: "https://n8n.io" },
 ];
 
+const demoItems = [
+    { link: "#", text: "Web Development"},
+    { link: "#", text: "Agentic AI"},
+    { link: "#", text: "Diffusion Models"},
+    { link: "#", text: "ComfyUI - Image generation & Video generation"},
+    { link: "#", text: "RAG - Retrieval-Augmented Generation"},
+    { link: "#", text: "AI content generation"},
+    { link: "#", text: "AI & Automation"},
+    { link: "#", text: "API Design & Integration"},
+    { link: "#", text: "Design & Prototyping"},
+    { link: "#", text: "Data & Analytics"},
+    { link: "#", text: "Social Media Marketing"},
+    { link: "#", text: "Content Writing"},
+    { link: "#", text: "Graphic Design"},
+    { link: "#", text: "Video Editing - Premiere Pro & After Effects"},
+    { link: "#", text: "3D Modeling"}
+];
 export default function Service() {
   return (
     <div>
@@ -31,6 +48,18 @@ export default function Service() {
       <div className="flex justify-center mt-5 mb-8">
       </div>
       <div className="w-screen">
+        {/* Our Services Section */}
+        <div>
+          <h2 className="text-4xl font-bold text-center mb-7" style={{ color: '#DE9F3A', fontFamily: "robit, sans-serif" }}>
+            Our Services
+          </h2>
+          <div style={{ height: '500px', position: 'relative', overflow: 'hidden', maxWidth: '100vw' }}>
+            <FlowingMenu items={demoItems} />
+          </div>
+        </div>
+        {/* Add more spacing between the two sections */}
+        <div className="my-16" />
+        {/* Our Stack Section */}
         <div>
           <h2 className="text-4xl font-bold text-center mb-7" style={{ color: '#DE9F3A', fontFamily: "robit, sans-serif" }}>
             Our stack
