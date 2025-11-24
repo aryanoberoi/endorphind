@@ -11,7 +11,7 @@ import ConnectButtonAndForm from "./Connect";
 
 const NAV_TABS = [
   { name: "home", label: "Home", Icon: HomeIcon, route: "/" },
-  { name: "team", label: "Our Team", Icon: PersonIcon, route: "/team" },
+  { name: "team", label: "Founding Team", Icon: PersonIcon, route: "/team" },
   { name: "Findaura", label: "Findaura", Icon: MagnifyingGlassIcon, route: "/findaura" },
 ];
 

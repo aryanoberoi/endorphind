@@ -122,10 +122,8 @@ const GlideCarousel = () => {
             <button
                 onClick={goToPrevSlide}
                 disabled={isSliding}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 md:relative md:left-auto md:top-auto md:translate-y-0 md:mr-6"
                 style={{
-                    position: 'relative',
-                    left: 0,
-                    zIndex: 3,
                     fontSize: '2.5rem',
                     color: '#fff',
                     background: 'rgba(0,0,0,0.35)',
@@ -133,7 +131,6 @@ const GlideCarousel = () => {
                     borderRadius: '0 12px 12px 0',
                     cursor: isSliding ? 'not-allowed' : 'pointer',
                     padding: '0.3em 0.8em',
-                    marginRight: 24, // distance from carousel
                     boxShadow: '0 2px 8px rgba(0,0,0,0.22)',
                     transition: 'background 0.2s',
                     touchAction: 'none'
@@ -170,7 +167,7 @@ const GlideCarousel = () => {
                             muted
                             loop
                             autoPlay
-                            style={{ ...slideAnimStyle, background: "#101010", maxHeight: '400px', objectFit: "contain" }}
+                            style={{ ...slideAnimStyle, background: "transparent", maxHeight: '400px', objectFit: "contain" }}
                         />
                     ) : (
                         <img
@@ -178,7 +175,7 @@ const GlideCarousel = () => {
                             src={currentItem.src}
                             alt={`Slide ${currentIndex + 1}`}
                             className="carousel-item"
-                            style={{ ...slideAnimStyle, background: "#101010", maxHeight: '400px', objectFit: "contain" }}
+                            style={{ ...slideAnimStyle, background: "transparent", maxHeight: '400px', objectFit: "contain" }}
                         />
                     )}
                 </div>
@@ -213,10 +210,8 @@ const GlideCarousel = () => {
             <button
                 onClick={goToNextSlide}
                 disabled={isSliding}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:relative md:right-auto md:top-auto md:translate-y-0 md:ml-6"
                 style={{
-                    position: 'relative',
-                    right: 0,
-                    zIndex: 3,
                     fontSize: '2.5rem',
                     color: '#fff',
                     background: 'rgba(0,0,0,0.35)',
@@ -224,7 +219,6 @@ const GlideCarousel = () => {
                     borderRadius: '12px 0 0 12px',
                     cursor: isSliding ? 'not-allowed' : 'pointer',
                     padding: '0.3em 0.8em',
-                    marginLeft: 24, // distance from carousel
                     boxShadow: '0 2px 8px rgba(0,0,0,0.22)',
                     transition: 'background 0.2s',
                     touchAction: 'none'

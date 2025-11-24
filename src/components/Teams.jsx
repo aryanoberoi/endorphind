@@ -30,39 +30,36 @@ const Teams = () => {
       bio: "I am a filmmaker with a strong grasp of meme and pop culture references. My up-to-date knowledge of social media allows me to create content that feels relevant and fresh. That being said, I'm not bound by the algorithm because I believe, in a world of shrinking attention spans, people crave good stories, and no algorithm can beat a well-told narrative.",
       photo: 'team/aryand.png',
       socialLinks: {
-        instagram: 'https://instagram.com/aryandas',
-        linkedin: 'https://linkedin.com/in/aryandas',
-        github: ''
+        instagram: 'https://www.instagram.com/das._.mine/',
+        linkedin: 'https://www.linkedin.com/in/aryan-das-969227267/',
       }
     },
     {
       name: 'Anahita Zahl Tantra',
-      role: 'Co Founder and Growth Lead',
-      bio: 'Award-winning designer with expertise in brand storytelling.',
+      role: 'Co Founder and Ops',
+      bio: 'Part-ops, part-people management - an industrial psychologist who is carving her space at the intersection of talent, strategy, and sustainability. In her experience of 1.5+ years working closely with founders, leading everything from hiring and strategic operations to workflow automation and market research, she brings structure, clarity and just the right amount of curiosity to help things grow — thoughtfully and efficiently.',
       photo: 'team/anahita.png',
       socialLinks: {
-        instagram: '',
-        linkedin: 'https://linkedin.com/in/anahita',
+        linkedin: 'https://www.linkedin.com/in/anahitazahltantra/',
       }
     },
     {
-      name: 'Arham',
-      role: 'Full Stack AI Engineer',
-      bio: 'Md. Anas Jamal is an AI Engineer with expertise in large language models, generative AI, and machine learning. He has developed enterprise-grade AI solutions, led research projects, and optimized ML applications for the public and private sectors. With experience at Carnot Research, Persist Ventures, and Tata Steel, he has demonstrated proficiency in AI-driven applications, including multilingual meeting intelligence tools, advanced web scraping, and machine learning pipelines',
+      name: 'Pinak',
+      role: 'Co Founder and Lead Artist',
+      bio: 'Pinak Ahlawat is an emerging Indian creative talent, an animator, and a cartoonist currently carving out his niche in the design world.',
       photo: 'team/arham.png',
       socialLinks: {
-        instagram: 'https://instagram.com/arham',
-        linkedin: '',
-        github: 'https://github.com/arham'
+        instagram: 'https://www.instagram.com/pinakahlawat'
       }
     }
+
   ];
 
   return (
     // ⬇️ Wrap the entire section inside BackgroundLayout
     <BackgroundLayout>
       <section className="relative min-h-screen py-20 overflow-hidden">
-        
+
         {/* Section Header */}
         <div className="relative z-10 text-center mb-16 px-4">
           <div className="inline-flex items-center space-x-2 text-gray-400 mb-4">
