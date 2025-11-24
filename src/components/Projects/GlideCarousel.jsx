@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 
 const customCarouselItems = [
     { type: 'video', src: 'Carousel/10.mp4' },
+    { type: 'video', src: 'Carousel/13.mp4' },
     { type: 'video', src: 'Carousel/11.mp4' },
     { type: 'video', src: 'Carousel/12.mp4' },
     { type: 'image', src: 'Carousel/1.jpg' },
