@@ -48,20 +48,20 @@ const App = () => {
 
     useEffect(() => {
         WebFont.load({
-          google: {
-            families: ['Outfit:00,900']
-          },
-          custom: {
-            families: ['Robit'], // The font-family name from your @font-face rule
-            urls: ['./index.css'] // Path to your CSS file containing the @font-face rule
-          },
+            google: {
+                families: ['Outfit:00,900']
+            },
+            custom: {
+                families: ['Robit'], // The font-family name from your @font-face rule
+                urls: ['./index.css'] // Path to your CSS file containing the @font-face rule
+            },
         });
-      }, []);
+    }, []);
 
     return (
         <div className="font-robit">
-            <footer className="bg-transparent text-gray-400 py-4 px-4 sm:px-6 lg:px-8 flex flex-col justify-center min-h-[1px]">
-                <div className="max-w-7xl mx-auto w-full overflow-hidden">
+            <footer className="bg-transparent text-gray-400 py-4 px-4 sm:px-6 lg:px-8 flex flex-col justify-center min-h-[1px] w-full">
+                <div className="w-full overflow-hidden">
                     <ConnectButtonAndForm />
                     <div className="flex flex-col md:flex-row justify-between items-center text-sm mt-4" style={{ fontFamily: 'Robit' }}>
                         <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 mb-2 md:mb-0" style={{ fontFamily: 'Robit' }}>

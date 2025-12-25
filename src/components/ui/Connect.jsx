@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { Rocket, Check, X, MessageSquare } from 'lucide-react';
-import StarBorder from '../StarBorder';
+import StarBorder from './StarBorder';
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
-const BREVO_API_KEY = import.meta.env.VITE_BREVO_API_KEY; 
-const CONTACT_LIST_IDS = [5]; 
+const BREVO_API_KEY = import.meta.env.VITE_BREVO_API_KEY;
+const CONTACT_LIST_IDS = [5];
 
 const ConnectButtonAndForm = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
