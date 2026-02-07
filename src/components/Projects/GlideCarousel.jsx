@@ -5,8 +5,6 @@ const customCarouselItems = [
     { type: 'video', src: 'Carousel/13.mp4' },
     { type: 'video', src: 'Carousel/11.mp4' },
     { type: 'video', src: 'Carousel/12.mp4' },
-    { type: 'image', src: 'Carousel/1.jpg' },
-    { type: 'image', src: 'Carousel/2.jpg' },
     { type: 'image', src: 'Carousel/3.jpg' },
     { type: 'image', src: 'Carousel/4.jpg' },
     { type: 'image', src: 'Carousel/5.jpg' },
