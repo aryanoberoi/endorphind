@@ -1,8 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // for navigation
 import GlassCardCarousel from "./GlassCardCarousel";
 const Projects = () => {
-  const navigate = useNavigate();
 
   return (
     <div
@@ -11,7 +9,7 @@ const Projects = () => {
     >
       {/* Header Section */}
       <div
-        className="text-center max-w-4xl space-y-6"
+        className="text-center max-w-6xl space-y-6"
         style={{ fontFamily: "robit, sans-serif" }}
       >
         <h1

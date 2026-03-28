@@ -8,9 +8,10 @@
 :root {
   line-height: 1.5;
   font-weight: 400;
-  --font-heading: 'Helvetica Neue', serif;
-  --font-primary: 'Poppins', sans-serif;
-  --font-secondary: 'Inter', sans-serif;
+  --font-heading: 'Bangers', cursive;
+  --font-primary: 'Bangers', cursive;
+  --font-secondary: 'Bangers', cursive;
+  font-family: 'Bangers', cursive !important;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -187,7 +188,50 @@ button:focus-visible {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Bangers', cursive !important;
+    letter-spacing: 0.05em;
   }
+}
+
+/* Spider-Verse Glitch Effects */
+@keyframes sv-glitch-anim {
+  0% { transform: translate(0) }
+  20% { transform: translate(-3px, 3px) }
+  40% { transform: translate(-3px, -3px) }
+  60% { transform: translate(3px, 3px) }
+  80% { transform: translate(3px, -3px) }
+  100% { transform: translate(0) }
+}
+
+@keyframes sv-glitch-color {
+  0% { text-shadow: 3px 0 #ff003c, -3px 0 #00ffff; }
+  25% { text-shadow: -3px 0 #ff003c, 3px 0 #00ffff; }
+  50% { text-shadow: 3px 0 #00ffff, -3px 0 #ff003c; }
+  75% { text-shadow: -3px 0 #00ffff, 3px 0 #ff003c; }
+  100% { text-shadow: 3px 0 #ff003c, -3px 0 #00ffff; }
+}
+
+.sv-glitch {
+  animation: sv-glitch-anim 0.3s infinite, sv-glitch-color 0.3s infinite;
+  display: inline-block;
+  position: relative;
+}
+
+.sv-glitch::before, .sv-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.sv-glitch-transition {
+  transition: all 0.3s ease;
+}
+.sv-glitch-transition:hover {
+  animation: sv-glitch-anim 0.2s infinite, sv-glitch-color 0.2s infinite;
 }
 
 
@@ -231,4 +275,20 @@ button:focus-visible {
   src: url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
+}
+
+/* Custom Scrollbar for Glass Cards */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

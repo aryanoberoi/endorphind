@@ -31,11 +31,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://endorphind.com/findaura</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://endorphind.com/aryan</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

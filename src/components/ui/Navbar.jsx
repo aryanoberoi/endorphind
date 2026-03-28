@@ -4,15 +4,12 @@ import {
   HamburgerMenuIcon,
   Cross1Icon,
   PersonIcon,
-  MagnifyingGlassIcon,
 } from "@radix-ui/react-icons";
-import { useNavigate, Link } from "react-router-dom";
 import ConnectButtonAndForm from "./Connect";
 
 const NAV_TABS = [
-  { name: "home", label: "Home", Icon: HomeIcon, route: "/" },
-  { name: "team", label: "Founding Team", Icon: PersonIcon, route: "/team" },
-  { name: "Findaura", label: "Findaura", Icon: MagnifyingGlassIcon, route: "/findaura" },
+  { name: "home", label: "Home", Icon: HomeIcon, route: "#about" },
+  { name: "team", label: "Founding Team", Icon: PersonIcon, route: "#team" },
 ];
 
 const MobileMenuOverlay = ({ isOpen, onClose }) => {
@@ -29,16 +26,16 @@ const MobileMenuOverlay = ({ isOpen, onClose }) => {
         </div>
         <nav className="p-4" style={{ fontFamily: "robit, sans-serif" }}>
           {NAV_TABS.map((tab) => (
-            <Link
+            <a
               key={tab.name}
-              to={tab.route}
+              href={tab.route}
               className="block py-2 text-white"
               onClick={onClose}
               style={{ fontFamily: "robit, sans-serif" }}
             >
               <tab.Icon className="inline mr-2" />
               {tab.label}
-            </Link>
+            </a>
           ))}
           {/* Add Connect button at the bottom of the mobile menu */}
           <div className="mt-6">
@@ -52,7 +49,6 @@ const MobileMenuOverlay = ({ isOpen, onClose }) => {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -66,7 +62,7 @@ const Navbar = () => {
         fontFamily: "robit, sans-serif"
       }}
     >
-      <img src="FindAura..png" alt="Endorphind Logo" className="mr-auto h-20" style={{ fontFamily: "robit, sans-serif" }} />
+      <img src="vite.svg" alt="Endorphind Logo" className="mr-auto h-20" style={{ fontFamily: "robit, sans-serif" }} />
       <button
         onClick={toggleMenu}
         className="md:hidden ml-auto"
@@ -77,15 +73,15 @@ const Navbar = () => {
       </button>
       <div className="hidden md:flex space-x-6 items-center" style={{ fontFamily: "robit, sans-serif" }}>
         {NAV_TABS.map((tab) => (
-          <Link
+          <a
             key={tab.name}
-            to={tab.route}
+            href={tab.route}
             className="hover:text-cyan-300"
             style={{ fontFamily: "robit, sans-serif" }}
           >
             <tab.Icon className="inline mr-1" />
             {tab.label}
-          </Link>
+          </a>
         ))}
         {/* Place the connect button to the right most */}
         <div className="ml-6">

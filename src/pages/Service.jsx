@@ -16,7 +16,7 @@ import {
   SiN8N
 } from "react-icons/si";
 import FlowingMenu from "@/components/ui/FlowingMenu";
-import JsonLd from "../components/seo/JsonLd";
+
 const imageLogos = [
   { src: "/Logos/comfy.png", alt: "ComfyUI", href: "https://comfyui.org" },
 ];
@@ -83,24 +83,11 @@ const demoItems = [
   { link: "#", text: "Video Editing - Premiere Pro & After Effects" },
   { link: "#", text: "3D Modeling" },
 ];
-const servicesSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Services — Endorphind",
-  description:
-    "Endorphind offers services in Web Development, Agentic AI, Diffusion Models, RAG, API Design, Graphic Design, Video Editing, 3D Modeling, and more.",
-  url: "https://endorphind.com/services",
-  itemListElement: demoItems.map((item, i) => ({
-    "@type": "ListItem",
-    position: i + 1,
-    name: item.text,
-  })),
-};
 
 export default function Service() {
   return (
     <div>
-      <JsonLd data={servicesSchema} />
+
       {/* Add ASCII text at the very top */}
       <div className="flex justify-center mt-5 mb-8"></div>
       <div className="w-screen">
@@ -114,7 +101,7 @@ export default function Service() {
           </h2>
           <div
             style={{
-              height: "500px",
+              height: "800px",
               position: "relative",
               overflow: "hidden",
               maxWidth: "100vw",

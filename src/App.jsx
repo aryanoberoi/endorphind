@@ -1,49 +1,45 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
-import Home from './pages/Home'
-import Project from './pages/Project'
-import Service from './pages/Service'
-import WebProjects from "./pages/WebProjects"
-import Studios from "./pages/Studios"
-import Teams from "./pages/Team"
 import BackgroundLayout from './components/ui/BackgroundLayout'
-import FindauraLanding from './findaura/Landing'
-import FindauraHome from './findaura/Home'
+import Footer from './components/ui/Footer'
+import AboutUs from './components/AboutUs'
+import Studios from './components/Projects/Studios/Studios'
+import Projects from './components/Projects/Projects'
+import WebProjects from './components/Projects/WebProjects/WebProjects'
+import Service from './pages/Service'
+import Teams from './components/Teams'
 import Aryan from './pages/Aryan'
-import InteractivePage from './pages/InteractivePage'
 import { Analytics } from "@vercel/analytics/react"
 
-const STANDALONE_ROUTES = ['/interactive']
-
 function App() {
-  const location = useLocation()
-  const isStandalone = STANDALONE_ROUTES.some(r => location.pathname.startsWith(r))
-
   return (
-    <>
+    <div className="flex flex-col w-full text-white bg-[#0b0812]">
       <Analytics />
-      {isStandalone ? (
-        <Routes>
-          <Route path="/interactive" element={<InteractivePage />} />
-        </Routes>
-      ) : (
-        <BackgroundLayout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Project />} />
-            <Route path="/services" element={<Service />} />
-            <Route path="/studios" element={<Studios />} />
-            <Route path="/webprojects" element={<WebProjects />} />
-            <Route path="/team" element={<Teams />} />
-
-            {/* Findaura Routes */}
-            <Route path="/findaura" element={<FindauraLanding />} />
-            <Route path="/findaura/home" element={<FindauraHome />} />
-
-            <Route path="/aryan" element={<Aryan />} />
-          </Routes>
-        </BackgroundLayout>
-      )}
-    </>
+      {/* Main Single Page Content Wrapped in Layout */}
+      <BackgroundLayout>
+        <div className="fixed top-4 left-4 z-50">
+          <a href="/">
+            <img src="/logoendorphind.png" alt="Endorphind Logo" className="h-16 md:h-24 w-auto object-contain cursor-pointer" />
+          </a>
+        </div>
+        <main className="flex flex-col w-full min-h-screen pt-24">
+          <section id="about" className="py-8">
+            <AboutUs />
+          </section>
+          <section id="studios" className="py-8">
+            <Studios />
+          </section>
+          <section id="projects" className="py-8">
+            <Projects />
+          </section>
+          <section id="services" className="py-8">
+            <Service />
+          </section>
+          <section id="team" className="py-8">
+            <Teams />
+          </section>
+        </main>
+        <Footer />
+      </BackgroundLayout>
+    </div>
   )
 }
 

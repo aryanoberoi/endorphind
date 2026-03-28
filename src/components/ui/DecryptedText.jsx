@@ -170,9 +170,10 @@ export default function DecryptedText({
   return (
     <motion.span
       ref={containerRef}
-      className={`inline-block whitespace-pre-wrap ${parentClassName}`}
+      className={`inline-block whitespace-pre-wrap ${parentClassName} ${isScrambling ? 'sv-glitch' : 'sv-glitch-transition'}`}
       {...hoverProps}
-      {...props}>
+      {...props}
+      data-text={displayText}>
       <span className="sr-only">{displayText}</span>
       <span aria-hidden="true">
         {displayText.split('').map((char, index) => {

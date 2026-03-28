@@ -1,9 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // for navigation
 import GlideCarousel from "../GlideCarousel";
 
 const Projects = () => {
-  const navigate = useNavigate();
 
   return (
     <div

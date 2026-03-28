@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
@@ -9,9 +10,9 @@ const projects = [
       "An AI-powered sustainability tool for organizations to track carbon footprint, ESG scores, and generate compliance-ready sustainability reports. Built intelligent dashboards and integrated automated PDF parsing and data extraction pipelines.",
     stack: ["LangChain", "FastAPI", "React", "OpenAI", "Vector DBs"],
     images: [
-      "project/greenfinite1.png",
-      "project/greenfinite2.png",
-      "project/greenfinite3.png",
+      "/project/greenfinite1.png",
+      "/project/greenfinite2.png",
+      "/project/greenfinite3.png",
     ],
   },
   {
@@ -45,303 +46,183 @@ const projects = [
   },
 ]    
 
-// Simple Modal component
-const DetailsModal = ({ isOpen, onClose, project }) => {
-  if (!isOpen) return null;
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(16,16,20,0.77)" }}>
-      <div
-        className="relative bg-gradient-to-br from-[#0e1020]/95 via-[#151e28]/90 to-[#0e1020]/95 backdrop-blur-2xl shadow-2xl border border-white/40 p-8 rounded-2xl w-full max-w-lg flex flex-col items-center"
-        style={{
-          maxHeight: "85vh",
-          overflowY: "auto",
-        }}
-        role="dialog"
-        aria-modal="true"
-        tabIndex={-1}
-      >
-        <button
-          className="absolute top-3 right-3 bg-black/30 text-white px-3 py-1 rounded-full text-lg font-bold hover:bg-orange-500/80 transition"
-          onClick={onClose}
-          aria-label="Close Details"
-          tabIndex={0}
-        >
-          &times;
-        </button>
-        <h2
-          className="text-2xl font-bold mb-1 text-white"
-          style={{ letterSpacing: "-.01em" }}
-        >
-          {project.name}
-        </h2>
-        {project.period && (
-          <span className="text-orange-400 mb-3 font-semibold" style={{ fontSize: "1rem" }}>
-            {project.period}
-          </span>
-        )}
-        {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mb-3 text-orange-300 hover:text-orange-500 underline font-semibold transition"
-            style={{ fontSize: "1.04rem" }}
-            tabIndex={0}
-          >
-            Visit Project &rarr;
-          </a>
-        )}
-        <p
-          className="text-gray-200 text-md font-medium text-center mt-3 mb-5"
-          style={{
-            lineHeight: "1.5",
-            letterSpacing: ".01em",
-            fontSize: "1.15rem",
-          }}
-        >
-          {project.description}
-        </p>
-        {project.stack && (
-          <div className="mt-1 mb-4 flex flex-wrap gap-2 justify-center">
-            {project.stack.map((tech, i) => (
-              <span
-                key={i}
-                className="bg-white/10 text-gray-100 text-xs rounded-full px-3 py-1 border border-white/10 backdrop-blur-sm"
-                style={{ fontWeight: 700, letterSpacing: ".04em" }}
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        )}
-        {project.images && project.images.length > 0 && (
-          <div className="w-full flex flex-wrap justify-center gap-2 mt-2">
-            {project.images.map((img, idx) => (
-              <img
-                key={idx}
-                src={img}
-                alt={project.name + " image " + (idx + 1)}
-                style={{ width: "70px", height: "52px", borderRadius: "7px", objectFit: "cover", border: "1px solid #232428" }}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
+
 
 const GlassCardCarousel = () => {
-  const [currentProjectIdx, setCurrentProjectIdx] = useState(0);
-  const [currentImageIdx, setCurrentImageIdx] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [direction, setDirection] = useState(0);
 
-  const imageIntervalRef = useRef();
-
-  // Only auto image carousel for main card
-  useEffect(() => {
-    clearInterval(imageIntervalRef.current);
-    imageIntervalRef.current = setInterval(() => {
-      setCurrentImageIdx((prev) => {
-        const images = projects[currentProjectIdx].images;
-        return (prev + 1) % images.length;
-      });
-    }, 3600);
-    return () => clearInterval(imageIntervalRef.current);
-  }, [currentProjectIdx]);
-
-  // Change project on manual next/prev, no auto project switch!
-  const handleNextProject = () => {
-    setCurrentImageIdx(0);
-    setModalOpen(false);
-    setCurrentProjectIdx((idx) => (idx + 1) % projects.length);
-  };
-  const handlePrevProject = () => {
-    setCurrentImageIdx(0);
-    setModalOpen(false);
-    setCurrentProjectIdx((idx) =>
-      idx === 0 ? projects.length - 1 : idx - 1
-    );
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 500 : -500,
+      opacity: 0,
+      scale: 0.9,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 500 : -500,
+      opacity: 0,
+      scale: 0.9,
+    }),
   };
 
-  // Change image in current project (only if modal not open)
-  const handleNextImage = (e) => {
-    if (modalOpen) return;
-    if (e) e.stopPropagation();
-    setCurrentImageIdx((idx) => (idx + 1) % projects[currentProjectIdx].images.length);
-  };
-  const handlePrevImage = (e) => {
-    if (modalOpen) return;
-    if (e) e.stopPropagation();
-    setCurrentImageIdx((idx) => {
-      const arr = projects[currentProjectIdx].images;
-      return idx === 0 ? arr.length - 1 : idx - 1;
-    });
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
   };
 
-  const project = projects[currentProjectIdx];
-  const images = project.images;
-  const showImage = images[currentImageIdx];
-
-  // Remove flip variables/styles and just use modern card
-  const cardOuterStyle = {
-    width: "100%",
-    minHeight: "40vh",
-    fontFamily: "Robit, Outfit, sans-serif",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
+  const paginate = (newDirection) => {
+    setDirection(newDirection);
+    setCurrentIdx((prev) => (prev + newDirection + projects.length) % projects.length);
   };
 
-  const cardContentStyle = {
-    position: "relative",
-    width: "80vw",
-    maxWidth: "700px",
-    minHeight: "450px",
-    boxShadow: "0 4px 32px 0 rgba(0,0,0,0.18)",
-    overflow: "hidden",
-    borderRadius: "1.5rem",
-    background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(12,20,32,0.12) 100%)",
-  };
-
-  const cardFaceStyle = {
-    width: "100%",
-    minHeight: "450px",
-    borderRadius: "1.5rem",
-  };
+  const project = projects[currentIdx];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full" style={cardOuterStyle}>
-      <div style={cardContentStyle}>
-        {/* CARD - Only image carousel and proj name */}
-        <div
-          className="bg-gradient-to-br from-white/10 via-white/10 to-white/0 backdrop-blur-xl shadow-2xl border border-white/30 p-10 transition hover:scale-105 hover:border-white/70 flex flex-col items-center"
-          style={{ ...cardFaceStyle, zIndex: 2 }}
-        >
-          <div
-            className="relative w-full max-w-[600px] h-[340px] bg-black/30 rounded-2xl overflow-hidden flex items-center justify-center mb-8"
-            style={{
-              boxShadow: "0 2px 16px 0 rgba(0,0,0,0.13)"
+    <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center py-6 sm:py-12 px-2 sm:px-4 min-h-[500px] md:min-h-[700px]">
+      <div className="relative w-full min-h-[600px] sm:min-h-[650px] md:min-h-[550px] lg:aspect-[16/8] flex items-center justify-center overflow-hidden rounded-3xl bg-black/60 border border-white/10 shadow-2xl backdrop-blur-2xl">
+        <AnimatePresence initial={true} custom={direction} mode="wait">
+          <motion.div
+            key={currentIdx}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 260, damping: 20 },
+              opacity: { duration: 0.2 },
+            }}
+            className="absolute inset-0 w-full h-full p-4 sm:p-8 md:p-16 flex flex-col lg:flex-row gap-6 md:gap-10 items-center lg:items-center justify-start lg:justify-center overflow-y-auto lg:overflow-visible custom-scrollbar"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1);
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1);
+              }
             }}
           >
-            <img
-              src={showImage}
-              alt="Project"
-              className="object-cover h-full w-full transition-all duration-400"
-              draggable={false}
-              style={{
-                borderRadius: "16px",
-                filter: "brightness(0.92) saturate(1.13)",
-                cursor: "pointer"
-              }}
-              tabIndex={0}
-            />
-            <button
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 text-white rounded-full w-10 h-10 flex items-center justify-center hover:scale-110 transition"
-              onClick={handlePrevImage}
-              aria-label="Previous Image"
-              tabIndex={0}
-            >
-              &#8592;
-            </button>
-            <button
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 text-white rounded-full w-10 h-10 flex items-center justify-center hover:scale-110 transition"
-              onClick={handleNextImage}
-              aria-label="Next Image"
-              tabIndex={0}
-            >
-              &#8594;
-            </button>
-            {/* Dots */}
-            <div className="absolute bottom-4 w-full flex justify-center gap-1">
-              {images.map((_, i) => (
-                <span
-                  key={i}
-                  className={`inline-block rounded-full ${i === currentImageIdx ? "bg-white/80" : "bg-gray-300/50"}`}
-                  style={{ width: 10, height: 10, margin: "0 3px" }}
+            {/* Image Section */}
+            <div className="w-full lg:w-1/2 h-[250px] sm:h-[350px] lg:h-full relative group shrink-0">
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-rose-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative h-full w-full rounded-2xl overflow-hidden border border-white/10 shadow-inner">
+                <img
+                  src={project.images[0]}
+                  alt={project.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-              ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              </div>
             </div>
-            <button
-              className="absolute right-3 top-3 bg-orange-500/80 text-white px-4 py-1 rounded-full text-sm font-semibold shadow hover:bg-orange-400 transition"
-              style={{ zIndex: 50 }}
-              onClick={() => setModalOpen(true)}
-              aria-label="Show Description & Stack"
-              tabIndex={0}
-            >
-              Show Details
-            </button>
-          </div>
-          <div className="w-full flex flex-col items-center">
-            <h3
-              className="text-3xl sm:text-4xl font-extrabold text-white px-4 py-2 transition-colors duration-200 select-none"
-              style={{ letterSpacing: "-.01em", borderRadius: "10px" }}
-              tabIndex={0}
-            >
-              {project.link ? (
+
+            {/* Content Section */}
+            <div className="w-full lg:w-1/2 flex flex-col justify-center items-start space-y-3 sm:space-y-6 px-2 md:px-0" style={{ fontFamily: "Bangers, cursive" }}>
+              <div className="space-y-2">
+                <motion.h3 
+                  className="text-2xl sm:text-3xl md:text-5xl font-black text-white hover:sv-glitch select-none cursor-default"
+                  data-text={project.name}
+                >
+                  {project.name}
+                </motion.h3>
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-[10px] sm:text-xs font-bold text-white uppercase tracking-widest leading-none">
+                    {project.period}
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed line-clamp-6 sm:line-clamp-none">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {project.stack.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-1.5 py-0.5 sm:px-3 sm:py-1 bg-white/5 border border-white/10 rounded-lg text-[7px] sm:text-[10px] md:text-xs text-gray-400 font-mono hover:bg-white/10 hover:text-white transition-colors"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {project.link && (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-orange-400 transition underline underline-offset-2"
-                  tabIndex={0}
-                  style={{ textDecorationThickness: "2px" }}
+                  className="group relative inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white !text-black rounded-xl font-bold transition-all hover:bg-cyan-400 hover:!text-white active:scale-95 text-sm sm:text-base"
                 >
-                  {project.name}
+                  Visit Project
+                  <svg 
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
                 </a>
-              ) : (
-                project.name
               )}
-            </h3>
-          </div>
-          {/* Project controls */}
-          <div className="flex items-center mt-8 gap-8">
-            <button
-              className="bg-white/10 px-4 py-2 rounded-full text-white font-bold shadow hover:bg-white/30 transition"
-              onClick={handlePrevProject}
-              aria-label="Previous Project"
-              tabIndex={0}
-            >
-              &#8592; Prev
-            </button>
-            <div className="flex gap-2">
-              {projects.map((_, idx) => (
-                <span
-                  key={idx}
-                  style={{
-                    display: "inline-block",
-                    width: 14,
-                    height: 14,
-                    borderRadius: "50%",
-                    margin: "0 3px",
-                    background: idx === currentProjectIdx
-                      ? "rgba(255,255,255,0.85)"
-                      : "rgba(180,180,180,0.23)",
-                    border: idx === currentProjectIdx
-                      ? "2px solid #fff"
-                      : "1px solid #888"
-                  }}
-                />
-              ))}
             </div>
-            <button
-              className="bg-white/10 px-4 py-2 rounded-full text-white font-bold shadow hover:bg-white/30 transition"
-              onClick={handleNextProject}
-              aria-label="Next Project"
-              tabIndex={0}
-            >
-              Next &#8594;
-            </button>
-          </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Controls - Hidden on mobile */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 hidden md:flex justify-between px-4 pointer-events-none z-10">
+          <button
+            onClick={() => paginate(-1)}
+            className="w-12 h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 border border-white/10 rounded-full text-white pointer-events-auto transition active:scale-90 backdrop-blur-md"
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => paginate(1)}
+            className="w-12 h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 border border-white/10 rounded-full text-white pointer-events-auto transition active:scale-90 backdrop-blur-md"
+            aria-label="Next"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="absolute bottom-0 inset-x-0 h-1 bg-white/5">
+          <motion.div 
+            className="h-full bg-gradient-to-r from-cyan-500 to-rose-500"
+            initial={{ width: "0%" }}
+            animate={{ width: `${((currentIdx + 1) / projects.length) * 100}%` }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          />
         </div>
       </div>
-
-      {/* Modal for details */}
-      <DetailsModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        project={project}
-      />
+      
+      {/* Pagination Indicators */}
+      <div className="flex gap-3 mt-8">
+        {projects.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              setDirection(idx > currentIdx ? 1 : -1);
+              setCurrentIdx(idx);
+            }}
+            className={`h-1.5 transition-all duration-300 rounded-full ${
+              idx === currentIdx ? "w-8 bg-white" : "w-4 bg-white/20 hover:bg-white/40"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

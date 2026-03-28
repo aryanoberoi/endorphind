@@ -1,9 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // for navigation
 import GlassCardCarousel from "../GlassCardCarousel";
 
 const Projects = () => {
-  const navigate = useNavigate();
 
   return (
     <div style={{ fontFamily: "Robit, sans-serif" }} className="bg-transparent text-gray-200 flex flex-col items-center py-16 px-6 space-y-20">

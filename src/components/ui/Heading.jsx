@@ -20,22 +20,10 @@ const Heading = ({
   const weightMap = {
     normal: 'font-normal',
     medium: 'font-medium',
-    bold: 'font-bold',
   };
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ['Outfit:00,900']
-      },
-      custom: {
-        families: ['Robit'], // The font-family name from your @font-face rule
-        urls: ['./index.css'] // Path to your CSS file containing the @font-face rule
-      },
-    });
-  }, []);
   return (
     <Tag
-      className={`font-myfont ${sizeMap[size]} ${weightMap[weight]} ${className}`}
+      className={`${sizeMap[size]} ${weightMap[weight]} ${className}`}
       style={{ color }}
     >
       {children}

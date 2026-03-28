@@ -1,7 +1,5 @@
 import React from "react";
-import Navbar from "../components/ui/Navbar";
-import Footer from "../components/ui/Footer";
-import JsonLd from "../components/seo/JsonLd";
+
 
 // Utility function to replace all m-dashes (—, Unicode U+2014) with commas
 function removeMdashes(str) {
@@ -132,43 +130,11 @@ const projects = [
   },
 ];
 
-const aryanSchema = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  name: "Aryan Oberoi — Creative Technologist & AI Developer",
-  url: "https://endorphind.com/aryan",
-  isPartOf: { "@id": "https://endorphind.com/#website" },
-  mainEntity: {
-    "@type": "Person",
-    name: "Aryan Oberoi",
-    jobTitle: "Full Stack Developer & AI Creative Technologist",
-    url: "https://endorphind.com/aryan",
-    image: "https://endorphind.com/team/aryano.png",
-    description:
-      "Creative Technologist, Full-Stack Developer, and AI specialist. Founder of Endorphind.",
-    worksFor: { "@id": "https://endorphind.com/#organization" },
-    sameAs: [
-      "https://github.com/aryanoberoi",
-      "https://www.linkedin.com/in/aryan-oberoi-1b4358195/",
-    ],
-    knowsAbout: [
-      "AI",
-      "Machine Learning",
-      "React",
-      "Full Stack Development",
-      "Diffusion Models",
-      "RAG",
-      "LangChain",
-      "ComfyUI",
-      "Creative Technology",
-    ],
-  },
-};
 
 export default function AryanPortfolio() {
   return (
     <div
-      className="min-h-screen flex flex-col w-full"
+      className="flex flex-col w-full"
       style={{
         background: "transparent",
         backgroundSize: "cover",
@@ -177,8 +143,7 @@ export default function AryanPortfolio() {
         minWidth: 0,
       }}
     >
-      <JsonLd data={aryanSchema} />
-      <Navbar />
+
       <main
         className="flex-1 flex flex-col items-center px-4 py-10 w-full"
         style={{ background: "transparent" }}
@@ -197,7 +162,7 @@ export default function AryanPortfolio() {
               background: "transparent",
             }}
           >
-            Aryan Oberoi
+            Meet the Founder
           </h1>
           <h2
             className="text-lg text-center mb-8 text-gray-300"
@@ -558,7 +523,7 @@ export default function AryanPortfolio() {
           </p>
         </section>
       </main>
-      <Footer />
+
     </div>
   );
 }
