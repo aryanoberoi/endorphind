@@ -7,15 +7,13 @@ import {
   SiPython,
   SiFastapi,
   SiFlask,
-  SiAdobecreativecloud,
   SiLangchain,
   SiVercel,
   SiOpenai,
   SiOpencv,
   SiOllama,
   SiGooglegemini,
-  SiN8N,
-  SiAdobe,
+  SiN8N
 } from "react-icons/si";
 import FlowingMenu from "@/components/ui/FlowingMenu";
 import JsonLd from "../components/seo/JsonLd";
@@ -50,11 +48,6 @@ const techLogos = [
     node: <SiFlask />,
     title: "Flask",
     href: "https://flask.palletsprojects.com",
-  },
-  {
-    node: <SiAdobe />,
-    title: "Adobe Creative Cloud",
-    href: "https://www.adobe.com/creativecloud",
   },
   {
     node: <SiLangchain />,

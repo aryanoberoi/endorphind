@@ -53,7 +53,7 @@ export default function InteractivePage() {
         style={{ zIndex: 20 }}
       >
         {/* Studio wordmark */}
-        <p
+        {/* <p
           style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 300,
@@ -65,7 +65,7 @@ export default function InteractivePage() {
           }}
         >
           Creative AI & Wellness Studio
-        </p>
+        </p> */}
 
         {/* Large headline */}
         <h1
